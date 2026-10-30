@@ -56,8 +56,12 @@ flowchart TD
     G -->|해결안 또는 구현 포함| R[clarify-requirements<br/>성공 조건·제약]
     R --> E[evaluate-solutions<br/>대안·전체 부담·작은 시험]
     E -->|전제 확인 필요| I
-    E --> C[사용자 선택·요청 범위의 산출물 작성]
-    C --> V
+    E -->|비교·제안까지만 요청| V
+    E --> C[사용자 선택 또는 위임에 따른 선택]
+    C --> PLAN[PLAN.md<br/>최종 업무 계획]
+    LOG[COLLABORATION.md<br/>실제 협업·결정 기록] --> PLAN
+    PLAN -->|요청·확정 범위| DEV[단계별 구현·산출물 작성]
+    DEV --> V
     V -->|문제 해석 수정 필요| D
     V --> F[결론·근거·한계 제출]
 ```
@@ -88,6 +92,46 @@ $verify-work-results
 
 인터뷰 대상 담당자에게는 자연어 질문을 전달하고, 분석 지원 AI에는 필요한 스킬을 적용합니다. 구체적인 단계별 요청 문장은 [Markdown 스킬맵](docs/skill-map.md)에 있습니다.
 
+## 작업 규칙·최종 계획·협업 기록 설치
+
+과제 폴더에서 아래 명령을 실행하면 작업 규칙과 빈 양식을 준비합니다. 저장소를 복제한 실제 경로로 바꿔 주세요. Bash만 사용하며 패키지 설치나 네트워크 요청은 없습니다.
+
+```bash
+# 현재 작업 폴더에 설치
+bash /복제한/경로/product-skill-trees/setup.sh
+
+# 또는 저장소에서 기존 작업 폴더를 지정
+bash setup.sh "/실제/과제 폴더"
+```
+
+| 설치할 파일 | 역할 |
+| --- | --- |
+| `AGENTS.md` | [과제용 작업 규칙](templates/AGENTS.template.md): 원문 우선, 단계별 실행·확인·보고, 협업 기록과 커밋 규칙 |
+| `docs/PLAN.md` | [최종 업무 계획 양식](templates/PLAN.template.md): 앞 단계 결과를 종합해 개발 착수에 사용할 문서 |
+| `docs/COLLABORATION.md` | [협업·결정 기록 양식](templates/COLLABORATION.template.md): 시각·상대·내용·결정·근거의 다섯 열 |
+| `templates/*.template.md` | 위 세 문서의 재사용 양식 |
+| `PROMPTS.md` | [협업 시작·최종 계획 작성·구현 요청 문구](PROMPTS.md) |
+
+**기존 항목은 덮어쓰지 않습니다.** 기존 `AGENTS.md`·문서·양식과 심볼릭 링크는 그대로 두고 없는 파일만 추가합니다. `docs`나 `templates` 자체가 파일 또는 심볼릭 링크이면 쓰기 전에 중단합니다. 저장소 자체에는 설치하지 않으며, 별도의 기존 작업 폴더를 사용합니다. 저장소 루트의 [AGENTS.md](AGENTS.md)는 저장소 유지보수 규칙이고, 설치되는 규칙은 과제용 양식입니다.
+
+설치 직후 PLAN은 **초안·미검토**, 협업 기록은 빈 상태입니다. 제공된 과제의 파일명·규칙·양식을 우선하고, 실제 근거와 결정을 바탕으로 채웁니다. 설치 후 새 Codex 세션에서 작업 폴더의 `AGENTS.md` 적용을 확인합니다. 이미 실행 중인 세션은 다시 시작합니다. 이 셋업은 스킬 자체를 등록하지 않으므로, 이미 등록한 스킬을 호출하거나 복제한 저장소의 `skills/<스킬명>/SKILL.md`를 지정합니다.
+
+### 분석 결과를 최종 업무 계획으로 잇기
+
+```text
+과제 원문 + 실제 단계별 출력(01~04 또는 직접 자료) + 협업·결정 기록
+  → docs/PLAN.md: 목표 · 타겟 사용자 · 사용자가 겪는 문제 · 이번에 풀 문제
+                 요구사항 · 선택한 솔루션 · 이번에 하지 않는 것
+                 솔루션 단위 우선순위 · 단계별 산출물과 검증 방법
+  → 요청·확정된 범위부터 개발
+  → 실제 실행·검증 결과 → 05-verification.md + 협업 기록
+  → 변경된 결정이 있으면 PLAN 갱신
+```
+
+PLAN은 링크 목록이 아니라 **그 문서만 읽어도 무엇을 왜 어떤 순서로 만들고 확인할지 이해할 수 있는 최종 업무 계획**입니다. 기존 P/M/O/R/S-ID와 입력 버전을 유지하고, 실제 선택·위임은 협업 기록의 D-ID에 연결합니다. 선택한 솔루션을 더 나눌 때만 부모 S-ID를 가진 U-ID를 사용합니다. 선택하지 않은 대안을 개발 우선순위 목록에 넣지 않습니다.
+
+에이전트는 의미 있는 질문·응답·제안·선택·범위 변경·검증 결과를 협업 기록에 남깁니다. 최종 결정은 PLAN에 반영하며, 실제 사용자 검토와 AI의 판단을 구분합니다. 기존 위임 범위는 다시 승인받지 않고 진행하고, 결과를 바꿀 미결정만 확인합니다. 자세한 연결 방법은 [최종 계획과 개발 착수 안내](docs/development-handoff.md)에 있습니다.
+
 ## 후속 연계 스킬: 디자인
 
 해결안에 웹 화면이나 제품 UI가 포함될 때 함께 쓰는 외부 스킬입니다. 이 저장소는 두 스킬의 원문·설치 방법·연결 지점을 안내합니다. 저장소를 복제한 뒤 원문을 확인하고, 필요할 때 아래 명령으로 사용하는 프로젝트에 추가할 수 있습니다.
@@ -100,7 +144,7 @@ $verify-work-results
 ### 기존 스킬과 연결하기
 
 ```text
-03-requirements.md의 R-ID + 04-solution-evaluation.md의 선택한 S-ID
+docs/PLAN.md의 개발 범위·우선순위 + 03의 R-ID + 04의 선택한 S-ID
   → frontend-design: 요구와 선택한 방법에 맞춰 화면 설계·구현
   → web-design-guidelines: 화면 코드의 UI 품질 점검
   → 발견한 문제 수정·재점검
@@ -126,8 +170,8 @@ npx skills add vercel-labs/agent-skills --skill web-design-guidelines -a codex
 
 ```text
 $frontend-design
-artifacts/고객온보딩/03-requirements.md와 04-solution-evaluation.md를 읽고,
-선택된 해결안의 화면을 설계·구현해줘.
+docs/PLAN.md와 연결된 03-requirements.md, 04-solution-evaluation.md를 읽고,
+선택된 해결안의 화면을 요청·확정된 범위와 우선순위에 따라 설계·구현해줘.
 대상 사용자·기존 디자인·R-ID의 요구와 제약을 보존하고,
 디자인 결정과 연결된 R/S-ID, 구현 파일 경로, 확인한 범위를
 artifacts/고객온보딩/design-notes.md에 남겨줘.
@@ -154,14 +198,26 @@ artifacts/고객온보딩/ui-review.md에 남겨줘.
 ```text
 product-skill-trees/
 ├── README.md
+├── AGENTS.md                 # 이 저장소를 관리할 때의 규칙
+├── PROMPTS.md
+├── setup.sh                  # 과제 폴더에 규칙·양식 설치
 ├── LICENSE
+├── templates/
+│   ├── AGENTS.template.md    # 실제 과제용 작업 규칙
+│   ├── PLAN.template.md
+│   └── COLLABORATION.template.md
 ├── docs/
 │   ├── skill-map.html
 │   ├── skill-guide.html
 │   ├── skill-map.md
 │   ├── handoff-contract.md
+│   ├── development-handoff.md
+│   ├── COLLABORATION.md      # 이 저장소 작업의 실제 결정 기록
 │   └── examples/onboarding/   # 가상 입력과 단계별 출력 예제
-├── scripts/build_skill_guide.py  # 실제 Markdown으로 안내 HTML 생성
+├── scripts/
+│   ├── build_skill_guide.py  # 실제 Markdown으로 안내 HTML 생성
+│   ├── templates/skill-guide.html
+│   └── test_setup.py        # 설치·재실행·기존 항목 보호 검증
 └── skills/
     ├── discovery-interview/
     │   ├── SKILL.md
@@ -178,5 +234,7 @@ product-skill-trees/
 다섯 스킬 폴더에는 각각 `assets/output-template.md`가 있습니다. 사용자 작업 결과를 저장하는 `artifacts/`는 Git에서 제외됩니다.
 
 스킬 본문은 로컬 스킬의 현재 내용을 담고, 문서는 다른 환경에서도 읽을 수 있도록 저장소 상대 경로를 사용합니다. 개인 학습 원기록은 포함하지 않습니다.
+
+설치 로직은 `bash -n setup.sh`와 `python3 scripts/test_setup.py`로 확인할 수 있습니다. 검사는 임시 폴더에서 수행하며 실제 과제 폴더를 수정하지 않습니다.
 
 [MIT License](LICENSE)
