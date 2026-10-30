@@ -1,6 +1,6 @@
 # Product Skill Trees
 
-담당자 인터뷰 → 문제 정의 → 요구사항 → 해결안 선택 → 구현·검증을 돕는 **업무·제품 문제 해결 스킬 모음**입니다. 필요한 단계부터 사용하며, 문제 발굴만 요청됐다면 그 근거를 검증하고 마무리합니다.
+과제를 수행하며 에이전트에게 단계별 도움을 받고, **필요한 스킬·산출물·결정 기록을 이어서 관리**하기 위한 모음입니다. 담당자 인터뷰부터 문제 정의·요구사항·해결안 선택·구현 검증까지 필요한 단계부터 사용합니다.
 
 ## 설치와 업데이트
 
@@ -14,16 +14,23 @@ bash setup.sh "/실제/과제 폴더"
 bash /복제한/경로/product-skill-trees/setup.sh
 ```
 
-셋업은 대상을 확인한 뒤 과제용 `AGENTS.md`, `docs/PLAN.md`, `docs/WORKLOG.md`, 재사용 양식 3개, `PROMPTS.md`까지 **7개 파일을 복사하고 종료**합니다. 새 PLAN은 초안, Worklog는 기록 행이 없는 양식입니다. 스킬 설치·서버 실행·Codex 실행·계획 작성은 수행하지 않습니다.
+셋업은 **문서 7개와 핵심 스킬 5개**를 복사합니다.
 
-**기존 파일·디렉터리·심볼릭 링크는 덮어쓰지 않습니다.** `docs`·`templates` 자체가 파일/링크이면 설치 전에 중단하며, 이 저장소 자체에는 설치하지 않습니다. 재실행으로 기존 규칙이 갱신되지는 않으므로 [최신 과제용 규칙](templates/AGENTS.template.md)과 비교해 필요한 부분을 반영하세요. 과제 원문·기존 기록을 우선하고 보존합니다.
+- 문서: 과제용 `AGENTS.md`, `docs/PLAN.md`, `docs/WORKLOG.md`, `templates/`의 재사용 양식 3개, `PROMPTS.md`
+- 스킬: `.agents/skills/`에 다섯 스킬의 본문·출력 양식·참고 자료·라이선스. [Codex 프로젝트 스킬 경로](https://learn.chatgpt.com/docs/build-skills)
 
-과제 폴더에서 새 Codex 세션을 시작하고 [요청 문구](PROMPTS.md)를 사용하세요. 이미 등록한 스킬을 호출하거나 복제한 저장소의 `SKILL.md` 경로를 지정합니다. 웹 과제는 [Browser 확인 규칙](templates/AGENTS.template.md#browser에서-서비스-확인)을 따릅니다.
+새 PLAN은 초안, Worklog는 빈 양식입니다. 외부 디자인 스킬 설치, 서버·Codex 실행, 계획 작성은 수행하지 않습니다.
+
+공통 작업 규칙의 원본은 [AGENTS.template.md](templates/AGENTS.template.md)입니다. 루트 [AGENTS.md](AGENTS.md)는 이를 읽도록 지시하고 저장소 정비 규칙만 추가합니다.
+
+**기존 항목은 덮어쓰지 않습니다.** 같은 이름의 스킬은 폴더 전체를 건너뜁니다. `docs`·`templates`·`.agents`·`.agents/skills` 자체가 파일/링크이면 설치 전에 중단하며, 이 저장소 자체에는 설치하지 않습니다. 재실행은 자동 업데이트가 아닙니다. 보존된 규칙·스킬은 최신 원본과 비교해 필요한 변경만 반영하세요. 복사 오류가 나면 부분 설치된 새 폴더를 확인한 뒤 재시도하세요.
+
+과제 폴더에서 새 Codex 세션을 시작하고 [협업 시작·재개 문구](PROMPTS.md)를 사용하세요. 기존 `AGENTS.md`가 보존된 경우에도 시작 문구로 공통 양식을 읽게 하되 과제 규칙을 우선합니다. 스킬이 목록에 안 보이면 설치된 `SKILL.md` 경로를 직접 지정하세요. 웹 과제는 [Browser 확인 규칙](templates/AGENTS.template.md#browser에서-서비스-확인)을 따릅니다.
 
 ```text
-/복제한/경로/product-skill-trees/skills/discovery-interview/SKILL.md를 읽고,
-첨부한 과제와 실제 담당자 응답으로 인터뷰를 도와줘.
-근거·가설·미확인을 구분하고 다음에 물을 핵심 질문 하나를 제안해줘.
+AGENTS.md, 과제 README, templates/AGENTS.template.md를 읽고
+과제 규칙에 맞춰 .agents/skills/에서 필요한 스킬을 골라 도와줘.
+단계 결과를 MD로 저장하고 Worklog에 결정·진행 상태·다음 행동을 기록해줘.
 ```
 
 ## 어떤 스킬을 쓸까?
@@ -46,7 +53,7 @@ bash /복제한/경로/product-skill-trees/setup.sh
   → 요청·확정 범위의 구현 → 실제 결과 검증 → 필요한 계획 수정
 ```
 
-`docs/PLAN.md`는 개발에 착수할 최종 업무 계획입니다. `docs/WORKLOG.md`에는 에이전트가 **별도 요청 없이 실제 협업·작업·검증 결과를 응답 종료 전에 기록**합니다. 셋업의 백그라운드 기능이 아니라 AGENTS 지침에 따른 기록이며, 배포본에는 과거 대화가 들어 있지 않습니다. [개발 착수 안내](docs/development-handoff.md)
+단계 문서는 분석·근거, `docs/PLAN.md`는 개발에 착수할 종합 계획을 담습니다. `docs/WORKLOG.md`에는 에이전트가 **별도 요청 없이 실제 협업·결정·진행 상태·다음 행동과 산출물 링크를 기록**합니다. 새 대화에서는 이 문서들을 읽어 이어갑니다. 기록은 AGENTS 지침에 따른 파일 갱신이며 백그라운드 수집 기능은 아닙니다. [개발 착수 안내](docs/development-handoff.md)
 
 ## 스킬맵과 양식
 

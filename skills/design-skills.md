@@ -19,11 +19,13 @@ docs/PLAN.md의 개발 범위·우선순위 + 03의 R-ID + 04의 선택한 S-ID
 
 `frontend-design`에는 요구·제약과 실제 선택 상태를 전달합니다. `web-design-guidelines`는 검토할 파일·범위를 지정하며, 실행할 때 원본 저장소의 최신 지침을 가져옵니다. UI 점검의 통과와 업무 효과 입증은 구분합니다.
 
+앞 단계 파일이 없으면 확인된 요구·선택과 직접 자료를 전달합니다. 디자인을 위해 01~04 문서를 모두 새로 만들 필요는 없습니다.
+
 외부 스킬의 기본 결과 형식은 각각 다릅니다. 이 저장소의 MD 흐름과 연결할 때는 디자인 결정·화면 파일 경로·UI 점검 결과·미확인을 남기고, `05-verification.md`의 입력표에 해당 자료와 관련 R/S-ID를 연결합니다.
 
 ## 필요할 때 설치하기
 
-아래 명령은 **실제로 디자인 작업을 할 프로젝트 폴더**에서 실행합니다. 이 저장소 자체의 HTML을 개선할 경우에는 복제한 `product-skill-trees` 폴더에서 실행하면 됩니다. 현재 Skills CLI는 Node.js 22.20 이상을 요구합니다. [설치 안내](https://github.com/vercel-labs/skills#install-a-skill)
+아래 명령은 **실제로 디자인 작업을 할 프로젝트 폴더**에서 실행합니다. 이 두 외부 스킬은 `setup.sh`의 핵심 스킬 설치 대상에 포함되지 않습니다. 네트워크 사용이 허용된 환경에서 필요할 때 설치하고, Node.js 요구 버전은 공식 설치 안내를 확인합니다. [설치 안내](https://github.com/vercel-labs/skills#install-a-skill)
 
 ```bash
 npx skills add anthropics/skills --skill frontend-design -a codex
