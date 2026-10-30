@@ -81,7 +81,7 @@ flowchart TD
 8. 구현이 필요하면 실제 선택·위임과 앞 단계 결과를 `docs/PLAN.md`에 종합한다. 목표·타겟·문제·요구·솔루션·제외 범위·우선순위·단계별 산출물과 검증 방법을 한 문서로 읽을 수 있게 작성하고, 요청·확정된 범위부터 개발한다.
 9. 요구된 산출물을 작성한 뒤 원문·규칙·PLAN의 기준과 대조한다. 실제 협업·결정·검증 결과는 `docs/COLLABORATION.md`에 기록하고, 변경된 판단은 PLAN과 관련 단계 문서에 반영한다. 마지막 설명에는 선택 이유, 실제 검증 한 건, 미확인 범위와 판단 변경 조건을 포함한다.
 
-개발 착수의 연결점은 [최종 계획 안내](development-handoff.md), [PLAN 양식](../templates/PLAN.template.md), [협업·결정 기록 양식](../templates/COLLABORATION.template.md), [요청 문구](../PROMPTS.md)에서 확인한다. `setup.sh`는 이 양식과 과제용 작업 규칙을 기존 파일을 보존하면서 설치한다. [설치 방법](../README.md#작업-규칙최종-계획협업-기록-설치)
+개발 착수의 연결점은 [최종 계획 안내](development-handoff.md), [PLAN 양식](../templates/PLAN.template.md), [협업·결정 기록 양식](../templates/COLLABORATION.template.md), [요청 문구](../PROMPTS.md)에서 확인한다. `setup.sh`는 이 양식과 과제용 작업 규칙을 기존 파일을 보존하면서 설치한다. [설치 방법](setup.md)
 
 최근 사례 하나를 추적하는 것은 출발점이다. 한 사례로 반복성·대표성을 입증하지 않는다. 사례를 무조건 세 건 모으는 규칙보다, 현재 판단을 바꿀 정상·예외·반대 사례가 무엇인지 선택하는 것이 중요하다.
 
