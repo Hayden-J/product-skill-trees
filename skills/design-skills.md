@@ -50,4 +50,4 @@ $web-design-guidelines
 artifacts/고객온보딩/ui-review.md에 남겨줘.
 ```
 
-[최종 계획과 개발 착수](development-handoff.md) · [README로 돌아가기](../README.md)
+[최종 계획과 개발 착수](../docs/development-handoff.md) · [README로 돌아가기](../README.md)

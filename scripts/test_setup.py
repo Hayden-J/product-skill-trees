@@ -11,9 +11,9 @@ FILES = {
     "AGENTS.md": "templates/AGENTS.template.md",
     "templates/AGENTS.template.md": "templates/AGENTS.template.md",
     "templates/PLAN.template.md": "templates/PLAN.template.md",
-    "templates/COLLABORATION.template.md": "templates/COLLABORATION.template.md",
+    "templates/WORKLOG.template.md": "templates/WORKLOG.template.md",
     "docs/PLAN.md": "templates/PLAN.template.md",
-    "docs/COLLABORATION.md": "templates/COLLABORATION.template.md",
+    "docs/WORKLOG.md": "templates/WORKLOG.template.md",
     "PROMPTS.md": "PROMPTS.md",
 }
 
@@ -39,7 +39,16 @@ class SetupTests(unittest.TestCase):
         for dest, source in FILES.items():
             self.assertEqual((self.task / dest).read_bytes(), (ROOT / source).read_bytes())
         self.assertFalse((self.task / ".agents").exists())
-        self.assertNotIn("D-001 · 확정", (self.task / "docs/COLLABORATION.md").read_text())
+        rows = [line for line in (self.task / "docs/WORKLOG.md").read_text().splitlines()
+                if line.startswith("|")]
+        self.assertEqual(rows, ["| 시각 | 상대(담당자/Codex/나) | 내용 | 결정 | 근거 |",
+                                "| --- | --- | --- | --- | --- |"])
+
+    def test_distribution_worklog_has_no_history(self):
+        template = ROOT / "templates/WORKLOG.template.md"
+        self.assertEqual((ROOT / "docs/WORKLOG.md").read_bytes(), template.read_bytes())
+        self.assertEqual(len([line for line in template.read_text().splitlines()
+                              if line.startswith("|")]), 2)
 
     def test_explicit_destination_from_repo(self):
         result = self.run_setup(explicit=True, cwd=ROOT)
@@ -71,8 +80,8 @@ class SetupTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("복사 4, 건너뜀 3", result.stdout)
         self.assertEqual((self.task / "docs/PLAN.md").read_text(), "원본 유지\n")
-        self.assertEqual((self.task / "docs/COLLABORATION.md").read_bytes(),
-                         (ROOT / FILES["docs/COLLABORATION.md"]).read_bytes())
+        self.assertEqual((self.task / "docs/WORKLOG.md").read_bytes(),
+                         (ROOT / FILES["docs/WORKLOG.md"]).read_bytes())
 
     def test_existing_symlinks_and_directory_are_preserved(self):
         outside = self.base / "outside.md"
