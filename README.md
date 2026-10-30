@@ -37,9 +37,12 @@
 ## Skill Map
 
 - [인터랙티브 HTML 스킬맵](docs/skill-map.html): 제출 범위 전환, 단계별 질문·완료 기준, 호출 문장 복사, 인쇄·PDF 저장.
+- [스킬별 흐름·양식 HTML](docs/skill-guide.html): 다섯 스킬의 내부 진행 흐름, 실제 MD 양식, 가상 작성 예제, 스킬 원문을 전환해서 읽고 Markdown 복사·내려받기.
 - [Markdown 스킬맵](docs/skill-map.md): 전체 흐름, 역할 구분, 단계별 사용법과 호출 예시.
 
 HTML은 외부 라이브러리나 네트워크 요청 없이 동작하는 단일 파일입니다. **저장소를 복제하거나 파일을 내려받은 뒤 브라우저에서 열어 주세요.** GitHub 파일 화면에서는 HTML 소스가 표시됩니다. 스킬 원문·Markdown 링크까지 사용하려면 저장소 구조를 함께 유지합니다.
+
+스킬별 안내의 원문·양식·예제는 실제 Markdown을 포함합니다. 해당 파일을 수정했다면 `python3 scripts/build_skill_guide.py`로 HTML을 다시 생성합니다. 별도 패키지는 필요하지 않습니다. 진행 흐름 요약은 같은 스크립트의 `STAGES`에, 화면 구성은 `scripts/templates/skill-guide.html`에 있습니다.
 
 ```mermaid
 flowchart TD
@@ -100,9 +103,11 @@ product-skill-trees/
 ├── LICENSE
 ├── docs/
 │   ├── skill-map.html
+│   ├── skill-guide.html
 │   ├── skill-map.md
 │   ├── handoff-contract.md
 │   └── examples/onboarding/   # 가상 입력과 단계별 출력 예제
+├── scripts/build_skill_guide.py  # 실제 Markdown으로 안내 HTML 생성
 └── skills/
     ├── discovery-interview/
     │   ├── SKILL.md
