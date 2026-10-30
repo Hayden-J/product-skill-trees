@@ -18,9 +18,9 @@
 
 해결안이 선택되고 계획·구현까지 요청되면 실제 단계 산출물과 과제 원문을 [PLAN 양식](../templates/PLAN.template.md)에 종합한다. 기본 경로는 `docs/PLAN.md`다. 앞 단계를 모두 수행하도록 강제하지 않으며, 직접 자료로 시작한 경우 그 자료와 실제 결정을 근거로 쓴다. 기존 05가 있으면 검증된 결과·한계를 반영하지만, 개발 전 05 작성이 필수 조건은 아니다.
 
-PLAN에는 목표·타겟 사용자·사용자가 겪는 문제·이번 문제·요구사항·선택한 솔루션·제외 범위·솔루션 단위 우선순위·단계별 산출물과 검증 방법을 본문으로 풀어 쓴다. 입력 링크·리비전·E/C/P/M/O/R/S/X/V-ID를 유지하고, 실제 선택·위임·변경은 `docs/COLLABORATION.md`의 D-ID에 연결한다. 선택한 S-ID를 개발 단위로 나눌 때만 U-ID와 부모 S-ID를 함께 사용한다. 미선택 대안을 실행 목록으로 바꾸지 않는다.
+PLAN에는 목표·타겟 사용자·사용자가 겪는 문제·이번 문제·요구사항·선택한 솔루션·제외 범위·솔루션 단위 우선순위·단계별 산출물과 검증 방법을 본문으로 풀어 쓴다. 입력 링크·리비전·E/C/P/M/O/R/S/X/V-ID를 유지하고, 실제 선택·위임·변경은 `docs/WORKLOG.md`의 D-ID에 연결한다. 선택한 S-ID를 개발 단위로 나눌 때만 U-ID와 부모 S-ID를 함께 사용한다. 미선택 대안을 실행 목록으로 바꾸지 않는다.
 
-협업 기록은 [다섯 열 양식](../templates/COLLABORATION.template.md)에 실제 질문·응답·제안·결정·검증 결과를 남긴다. 변경은 새 D-ID로 기록한 뒤 PLAN의 리비전·영향받는 요구·산출물·검증 방법을 갱신한다. 구현 후 `05-verification.md`는 PLAN의 기준과 실제 실행 증거를 대조한다. 계획·사용자 검토·실제 검증은 별개이며, 미결정은 영향받는 부분에만 표시한다. [개발 착수 절차](development-handoff.md)와 [요청 문구](../PROMPTS.md)를 참고한다.
+에이전트는 별도 요청 없이 [Worklog 다섯 열 양식](../templates/WORKLOG.template.md)에 현재 사용자와의 실제 질문·응답·제안·결정·수행 작업·검증 결과를 응답 종료 전에 남긴다. 변경은 새 D-ID로 기록한 뒤 PLAN의 리비전·영향받는 요구·산출물·검증 방법을 갱신한다. 구현 후 `05-verification.md`는 PLAN의 기준과 실제 실행 증거를 대조한다. 계획·사용자 검토·실제 검증은 별개이며, 미결정은 영향받는 부분에만 표시한다. [개발 착수 절차](development-handoff.md)와 [요청 문구](../PROMPTS.md)를 참고한다.
 
 ## 다섯 요소를 구분하는 기준
 
@@ -71,6 +71,3 @@ PLAN에는 목표·타겟 사용자·사용자가 겪는 문제·이번 문제·
 - [요구사항 출력 양식](../skills/clarify-requirements/assets/output-template.md)
 - [해결안 출력 양식](../skills/evaluate-solutions/assets/output-template.md)
 - [검증 출력 양식](../skills/verify-work-results/assets/output-template.md)
-- [가상 온보딩 예제의 입력](examples/onboarding/source.md)과 [단계별 출력 시작점](examples/onboarding/01-discovery.md)
-
-예제는 형식과 연결을 설명하기 위해 작성한 가상 자료다. 실제 기업 조사나 자율 에이전트의 수행 평가 결과가 아니다.

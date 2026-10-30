@@ -6,9 +6,11 @@
 
 ```text
 이 프로젝트의 AGENTS.md와 과제 README를 읽어줘.
-docs/PLAN.md와 docs/COLLABORATION.md가 있으면 현재 상태와 실제 합의를 확인해줘.
+docs/PLAN.md와 docs/WORKLOG.md가 있으면 현재 상태와 실제 합의를 확인해줘.
 내 요청, 담당자의 실제 답변, 네 제안, 실제 결정·위임, 검증 결과를 구분하고,
-의미 있는 협업 내용을 COLLABORATION.md의 다섯 열과 D-ID로 기록해줘.
+매번 따로 요청하지 않아도 실제 협업·수행 작업·검증 결과를
+docs/WORKLOG.md의 다섯 열과 D-ID로 응답 종료 전에 기록해줘.
+기존 기록이 있으면 중복 없이 이어 쓰고, 배포본 작성 이력은 가져오지 마.
 없는 담당자 발언·합의·시간·검증 결과를 만들어 채우지 마.
 이번에 요청한 범위의 단계·변경 파일·확인 방법을 먼저 알려줘.
 ```
@@ -17,7 +19,7 @@ docs/PLAN.md와 docs/COLLABORATION.md가 있으면 현재 상태와 실제 합�
 
 ```text
 과제 README와 artifacts/<작업명>/의 01~04 산출물,
-관련 05-verification.md(있는 경우), docs/COLLABORATION.md를 읽어줘.
+관련 05-verification.md(있는 경우), docs/WORKLOG.md를 읽어줘.
 수행하지 않은 단계는 만들지 말고, 앞 단계 파일이 없으면 제공된 직접 자료를 사용해줘.
 templates/PLAN.template.md에 맞춰 docs/PLAN.md를 종합해줘.
 과제 목표, 타겟 사용자, 사용자가 겪는 문제, 이번에 풀 문제, 요구사항,
@@ -32,11 +34,11 @@ E/P/M/O/R/S-ID, 입력 버전과 실제 결정 D-ID를 연결해줘.
 ## 계획에 따라 개발 진행
 
 ```text
-AGENTS.md, docs/PLAN.md, docs/COLLABORATION.md를 읽고
+AGENTS.md, docs/PLAN.md, docs/WORKLOG.md를 읽고
 이미 선택·위임된 범위의 구현을 진행해줘.
 계획에서 착수 가능한 우선순위와 선행 관계를 따라 단계별로 구현·검증해줘.
 결정이 필요한 핵심 공백은 질문하고, 그 답에 의존하지 않는 작업은 계속해줘.
-계획 변경과 실제 검증 결과는 COLLABORATION.md에 남기고,
+계획 변경과 실제 검증 결과는 WORKLOG.md에 남기고,
 필요하면 PLAN의 리비전·영향받는 단계·검증 기준도 갱신해줘.
 실행 명령과 실제 결과, 미실행을 구분해 보고하고 확인된 작업 단위는 커밋해줘.
 ```
