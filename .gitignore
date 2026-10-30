@@ -1,0 +1,3 @@
+# Per-task working documents; publish only deliberately selected examples.
+/artifacts/
+.DS_Store

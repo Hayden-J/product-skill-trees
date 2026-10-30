@@ -9,12 +9,30 @@
 | 스킬 | 하는 일 | 사용하기 좋은 시점 |
 | --- | --- | --- |
 | [discovery-interview](skills/discovery-interview/SKILL.md) | 실제 사례·자료·원인·영향을 확보하는 인터뷰 준비와 질문 보완 | 불만이나 기능 요청은 있지만 구체적인 사건과 부담을 모를 때 |
-| [define-problem](skills/define-problem/SKILL.md) | 현상·영향·원인 가설을 구분하고 문제와 범위를 정의 | 여러 응답과 자료에서 이번에 해결할 문제를 좁힐 때 |
+| [define-problem](skills/define-problem/SKILL.md) | 문제·Pain, 원인의 발생 과정, 바꿀 행동·구조의 후보를 연결 | 여러 응답과 자료에서 문제와 개입 지점을 좁힐 때 |
 | [clarify-requirements](skills/clarify-requirements/SKILL.md) | 성공 조건·규칙·제약·예외와 검증 기준 정리 | 해결안이 무엇을 만족해야 하는지 정할 때 |
 | [evaluate-solutions](skills/evaluate-solutions/SKILL.md) | 실질적으로 다른 대안, 역할별 업무 부담, 작은 실험과 선택 변경 조건 비교 | 여러 방법 중 선택하거나 핵심 가정을 확인할 때 |
 | [verify-work-results](skills/verify-work-results/SKILL.md) | 원자료·기준과 결과를 대조하고 검증 주체·방법·범위 기록 | 핵심 주장·계산·산출물의 정확성을 확인할 때 |
 
 `verify-work-results`에는 [설명 연습 모드](skills/verify-work-results/references/learning-mode.md)가 포함되어 있습니다. 학습·복기를 요청한 경우에만 사용자의 최초 설명을 보존하고 근거 중심으로 피드백합니다.
+
+## 단계별 입력·출력
+
+각 스킬은 정형화된 Markdown 결과를 저장합니다. 기본 위치는 `artifacts/<작업명>/`이며, 사용자 지정 경로·형식을 우선합니다. 이전 단계의 출력은 다음 단계의 입력표에 **문서 링크·버전·항목 ID**로 연결됩니다.
+
+| 스킬 | 출력 | 다음에 전달할 것 |
+| --- | --- | --- |
+| discovery-interview | `01-discovery.md` | 근거 E-ID, 사례 C-ID, 업무 범위·Pain |
+| define-problem | `02-problem-definition.md` | 문제 P-ID → 발생 과정 M-ID → 개입 지점 O-ID |
+| clarify-requirements | `03-requirements.md` | P/O와 연결된 요구 R-ID, 검증 기준·충돌 |
+| evaluate-solutions | `04-solution-evaluation.md` | 대안 S-ID, 실제 선택 상태, 실험 계획 X-ID |
+| verify-work-results | `05-verification.md` | 대조 결과 V-ID, 한계, 돌아갈 문서·항목 |
+
+각 문서에서 핵심 결론·입력·상세 판단·사용자 검토·다음 단계 전달·변경 기록을 확인할 수 있습니다. 사용자 검토는 실제 피드백이 있기 전까지 `미검토`로 남습니다. 문서 작성, 사용자 선택, 실제 검증을 서로 구분하며, 매 단계의 승인을 새 필수 절차로 만들지는 않습니다.
+
+**Problem Space → Pain → Mechanism → Opportunity → Solution**을 판단 내용으로 추적합니다. 특히 Opportunity는 “누구의 어느 행동·구조를 바꿀 것인가”, Solution은 “그 변화를 어떤 구체적인 방법으로 만들 것인가”로 구분합니다. 원인·개입이 잠정이면 다음 단계에서도 가설 상태를 보존합니다.
+
+자세한 규칙과 양식은 [입력·출력 규약](docs/handoff-contract.md), 실제 문서 모양은 [가상 온보딩 예제](docs/examples/onboarding/01-discovery.md)에서 확인할 수 있습니다. 앞 단계 파일이 없어도 직접 자료로 시작하며, 수행하지 않은 단계의 문서는 만들지 않습니다.
 
 ## Skill Map
 
@@ -26,7 +44,7 @@ HTML은 외부 라이브러리나 네트워크 요청 없이 동작하는 단일
 ```mermaid
 flowchart TD
     P[담당자 또는 담당자 페르소나] <-->|사용자가 질문·응답 전달| I[discovery-interview<br/>사례·근거 확보]
-    I --> D[define-problem<br/>문제·원인 상태·범위]
+    I --> D[define-problem<br/>문제·발생 과정·개입 지점]
     D -->|핵심 근거 부족| I
     D --> G{요구된 제출 범위}
     G -->|문제 발굴까지| V[verify-work-results<br/>근거·판단·결과 대조]
@@ -51,6 +69,7 @@ skills/discovery-interview/SKILL.md를 읽고 인터뷰를 도와줘.
 확보한 근거, 내 가설, 아직 모르는 것을 구분해줘.
 다음에 물을 핵심 질문 하나와 그 질문으로 달라질 판단을 알려줘.
 담당자의 답변이나 수치를 대신 만들어내지 마.
+단계 결과는 출력 양식에 맞춰 artifacts/고객온보딩/01-discovery.md에 저장해줘.
 ```
 
 스킬이 등록된 환경에서는 해당 도구가 지원하는 호출 방식을 사용합니다. 아래는 `$스킬명` 호출을 지원하는 환경의 예시입니다.
@@ -81,7 +100,9 @@ product-skill-trees/
 ├── LICENSE
 ├── docs/
 │   ├── skill-map.html
-│   └── skill-map.md
+│   ├── skill-map.md
+│   ├── handoff-contract.md
+│   └── examples/onboarding/   # 가상 입력과 단계별 출력 예제
 └── skills/
     ├── discovery-interview/
     │   ├── SKILL.md
@@ -94,6 +115,8 @@ product-skill-trees/
         ├── agents/openai.yaml
         └── references/learning-mode.md
 ```
+
+다섯 스킬 폴더에는 각각 `assets/output-template.md`가 있습니다. 사용자 작업 결과를 저장하는 `artifacts/`는 Git에서 제외됩니다.
 
 스킬 본문은 로컬 스킬의 현재 내용을 담고, 문서는 다른 환경에서도 읽을 수 있도록 저장소 상대 경로를 사용합니다. 개인 학습 원기록은 포함하지 않습니다.
 
