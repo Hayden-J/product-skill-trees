@@ -1,0 +1,3 @@
+interface:
+  display_name: "Verify Work Results"
+  short_description: "원자료와 기준으로 업무 산출물을 대조하고 검증 범위를 기록"
