@@ -18,6 +18,9 @@
   @media(max-width:680px){body{font-size:15px}.wrap{width:calc(100% - 32px)}.top-inner{min-height:62px}.top-right{gap:13px}.date{display:none}.brand{font-size:11px;gap:8px}.brand-mark{width:24px;height:24px}.subtle-button{font-size:12px}.hero{padding:30px 0 20px}.hero h1{font-size:32px;margin:11px 0 14px}.hero p{font-size:13px}.scope{display:block;padding:4px 0 19px}.segmented{width:100%;margin-bottom:10px}.segmented button{width:50%;padding:10px 8px;font-size:12px}.scope-caption{font-size:12px;max-width:none}.workbench{display:block}.route{padding:19px 16px;border-right:0;border-bottom:1px solid var(--line)}.role{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;margin:10px 0 13px}.role strong{font-size:12px}.role-pair{gap:10px}.role p{margin:0;font-size:10px;max-width:100px}.down-label,.route-end,.route-note{display:none}.steps{display:flex;gap:6px;align-items:stretch}.steps li{flex:1;min-width:0}.steps li:not(:last-child){padding-bottom:0}.steps li:not(:last-child):after{display:none}.step{display:flex;flex-direction:column;gap:7px;align-items:center;justify-content:flex-start;text-align:center;border-color:var(--line);padding:9px 3px;min-height:91px;border-radius:8px;height:100%}.step-number{width:25px;height:25px;font-size:10px}.step strong{font-size:11px;line-height:1.45;word-break:keep-all}.step small{display:none}.detail{padding:24px 20px}.detail h2{font-size:26px}.lead{font-size:14px;margin:14px 0 19px}.detail-grid{grid-template-columns:1fr;gap:17px;padding:17px 0}.question blockquote{font-size:16px}.prompt pre{font-size:11px;padding:14px}.prompt-top{padding:11px 13px}.principles{grid-template-columns:1fr;gap:20px;margin:24px 0}.source{display:block;padding-bottom:25px}.source>a{display:inline-block;margin-top:10px}.finish{padding:21px}.finish h2{font-size:19px}.counter{font-size:10px}.next{font-size:11px;padding:9px 12px}}
   @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
   @media print{body{background:white;color:#111;font-size:11pt}.wrap{width:100%}.top,.scope,.workbench,.principles,.finish,.source,.hero-note{display:none!important}.hero{padding:0 0 20px}.hero h1{font-size:25pt}.hero p{font-size:11pt}.print-only{display:block}.print-step{break-before:page}.print-step:first-child{break-before:auto}.print-step h2{font-size:19pt;margin:0 0 5px}.print-step h3{font-size:11pt;margin:15px 0 5px}.print-step p,.print-step li{font-size:10pt}.print-step pre{white-space:pre-wrap;overflow-wrap:anywhere;font:9pt/1.7 monospace;padding:14px;border:1px solid #ddd}.print-step small{font-size:9pt;color:#444}.print-notice{font-size:9pt;margin:15px 0}}
+  .concepts{margin:0 0 24px}.concepts-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.concept{background:transparent;border:1px solid var(--line);border-radius:10px;padding:12px;text-align:left;color:var(--ink)}.concept strong{display:block;font-size:12px;overflow-wrap:anywhere}.concept span{font-size:12px;color:var(--muted)}.concept.related{background:var(--green-light);border-color:#b5ccbd}.concept:disabled{opacity:.45}.concept-note{font-size:12px;color:var(--muted);margin:9px 0 0}.io{background:#f6f8f3;border:1px solid var(--line);border-radius:11px;padding:16px;margin:18px 0 22px}.io-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.io p{font-size:12px;margin:4px 0}.io code{font-size:12px;overflow-wrap:anywhere;word-break:break-word}.io-footer{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:10px;margin-top:12px;font-size:11px;color:var(--muted)}.io-footer a{font-size:12px;color:var(--green)}.io-state{font-size:11px!important;color:var(--muted);margin-top:8px!important}
+  @media(max-width:680px){.concepts-grid{grid-template-columns:repeat(2,1fr)}.concept:last-child{grid-column:1/-1}.concepts{margin-bottom:20px}.io-grid{grid-template-columns:1fr;gap:10px}}
+  @media print{.concepts{display:none}}
 </style>
 </head>
 <body>
@@ -26,11 +29,13 @@
   <section class="hero"><div><div class="eyebrow">From questions to evidence</div><h1>담당자 인터뷰 <span>Skill Map</span></h1><p>실제 사례를 묻고, 근거로 문제를 좁히고, 판단을 검증하는 흐름.<br>단계를 선택하면 사용 시점과 다음 질문, 호출 문장을 볼 수 있습니다.</p></div><aside class="hero-note"><strong>근거가 부족하면 돌아갑니다.</strong>한 번에 끝내는 순서표가 아니라<br>판단에 따라 오가는 작업 지도입니다.</aside></section>
   <noscript><p class="noscript">단계별 보기를 사용하려면 JavaScript를 켜 주세요. 전체 내용은 <a href="skill-map.md">원문 노트</a>에서도 볼 수 있습니다.</p></noscript>
   <div class="scope"><div class="segmented" role="group" aria-label="과제 제출 범위"><button type="button" data-mode="discovery" aria-pressed="false">문제 발굴까지만</button><button type="button" data-mode="full" aria-pressed="true">해결안까지</button></div><div class="scope-caption" id="scope-caption">성공 조건과 대안을 정한 뒤 결과를 검증합니다.</div></div>
+  <section class="concepts" aria-label="판단 내용과 스킬 연결"><div class="concepts-grid"><button type="button" class="concept" data-concept="interview"><strong>Problem Space</strong><span>어느 업무에서?</span></button><button type="button" class="concept" data-concept="interview"><strong>Pain</strong><span>무엇이 불편한가?</span></button><button type="button" class="concept" data-concept="problem"><strong>Mechanism</strong><span>어떻게 발생하는가?</span></button><button type="button" class="concept" data-concept="problem"><strong>Opportunity</strong><span>어디를 바꿀 것인가?</span></button><button type="button" class="concept" data-concept="solutions"><strong>Solution</strong><span>어떤 방법으로?</span></button></div><p class="concept-note">판단 요소를 누르면 관련 스킬로 이동합니다. 원인과 개입 지점은 문제 정의에서 연결하고, 요구사항은 변화가 만족해야 할 조건을 정합니다.</p></section>
   <div class="workbench">
     <nav class="route" aria-label="스킬 흐름"><p class="section-label">WORKFLOW</p><div class="role"><div class="role-pair"><strong>담당자 페르소나</strong><span>↔</span><strong>나</strong></div><p>질문은 내가 전달하고, 지원 AI는 분석을 돕습니다.</p></div><p class="down-label">응답 · 과제 자료를 바탕으로</p><ol class="steps" id="steps"></ol><p class="route-end">↓<br><strong>결론 · 근거 · 한계 제출</strong></p><p class="route-note">단계 선택은 화면 탐색입니다.<br>스킬 실행이나 담당자에게 메시지 발송은 하지 않습니다.</p></nav>
     <section class="detail" id="detail" aria-labelledby="detail-title">
       <div class="detail-top"><span class="pill" id="stage-label"></span><a class="file-link" id="skill-link" href="#">스킬 원문 ↗</a></div>
       <h2 id="detail-title"></h2><div class="skill-name" id="skill-name"></div><p class="lead" id="lead"></p>
+      <div class="io"><div class="io-grid"><div><p class="label">INPUT · 읽을 자료</p><p id="input-docs"></p></div><div><p class="label">OUTPUT · 검토할 MD</p><code id="output-file"></code><p id="handoff-ids"></p></div></div><div class="io-footer"><span>기본 위치: artifacts/&lt;작업명&gt;/</span><a id="guide-link" href="skill-guide.html">흐름·양식 HTML ↗</a><a id="template-link" href="#">MD 출력 양식 ↗</a><a id="example-link" href="#">작성 예제 ↗</a></div><p class="io-state">결론 · 입력 버전 · 상세 판단 · 사용자 검토 · 다음 단계 전달 · 변경 기록을 남깁니다. 파일은 스킬 실행 시 작성하며 화면 탐색만으로 생성되지 않습니다. <a href="handoff-contract.md">전달 규약 보기</a></p></div>
       <div class="detail-grid"><div><p class="label">이럴 때 사용</p><p id="when"></p></div><div><p class="label">다음 단계로 넘길 것</p><ul id="outputs"></ul></div></div>
       <div class="question"><p class="label" id="question-label"></p><blockquote id="question"></blockquote><p class="context" id="question-context"></p></div>
       <div class="gate"><span class="gate-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.4"/><path d="m6 10 3 3 5-6" stroke="currentColor" stroke-width="1.5"/></svg></span><div><p class="label">넘어갈 기준</p><p id="gate"></p></div></div>
@@ -65,13 +70,13 @@
       prompt:'$discovery-interview\n첨부한 과제와 실제 담당자 응답을 바탕으로 인터뷰를 도와줘.\n현재 확보한 근거, 내 가설, 아직 모르는 것을 구분하고\n다음에 물을 핵심 질문 하나와 그 질문으로 달라질 판단을 알려줘.\n담당자의 답이나 수치를 대신 만들어내지 마.'
     },
     problem: {
-      short:'문제 정의', sub:'대상 · 영향 · 범위', title:'해결할 문제를 좁히기', skill:'define-problem',
-      lead:'여러 답변을 하나의 문제 진술로 연결합니다. 관찰된 어려움과 그 이유에 대한 가설을 나눕니다.',
+      short:'문제 정의', sub:'문제 · 원인 · 개입 지점', title:'문제와 개입 지점을 연결하기', skill:'define-problem',
+      lead:'원인이 어떤 과정을 거쳐 불편을 만드는지 설명하고, 누구의 어느 행동·구조를 바꿀지 후보를 정합니다. 원인과 개입의 가설 상태를 보존합니다.',
       when:'여러 불편과 사례가 모였고, 이번에 다룰 문제의 대상·상황·영향·범위를 정해야 할 때.',
-      outputs:['누구의 어떤 어려움을 다룰지','확인한 영향과 잠정 원인 가설','문제 정의를 바꿀 추가 증거'],
+      outputs:['P-ID 문제·Pain과 근거','M-ID 발생 과정 → O-ID 개입 지점','기대 변화·반례·아직 모르는 것'],
       questionLabel:'담당자에게 범위를 확인하는 예시', question:'지금까지 말씀하신 업무 중, 신규 고객의 설정 진행 상태를 확인하는 과정에 초점을 맞춰도 될까요?',
       context:'온보딩 사례의 예시입니다. 업무 범위 확인 뒤 원인과 영향의 근거를 각각 살핍니다.',
-      gate:'대상·상황·어려움·영향을 근거 수준에 맞게 설명할 수 있습니다. 원인이 불명확하면 잠정으로 남기고 진행합니다.',
+      gate:'문제·발생 과정·개입 지점을 근거 수준에 맞게 연결했습니다. 원인이 불명확하면 개입도 잠정 가설로 남기며, 특정 기능을 해법으로 확정하지 않습니다.',
       backReason:'원인이나 영향의 근거가 부족하면', backLabel:'인터뷰로 돌아가기 ↗', backTarget:'interview',
       prompt:'$define-problem\n지금까지의 응답·자료로 문제 후보를 정리해줘.\n대상·상황·어려움·영향·범위와 원인 가설을 구분하고,\n현재 가장 다룰 가치가 있는 후보의 근거와\n그 판단을 바꿀 추가 증거를 제시해줘.'
     },
@@ -109,6 +114,17 @@
       prompt:'$verify-work-results\n제출 초안을 실제 응답·자료·규칙과 대조해줘.\n개별 판단과 전체 집계를 나눠 확인하고, 기대값의 도출 근거를 남겨줘.\n업무 원기록 대조, 합성 기능 시험, 운영 효과 확인을 구분해줘.\n내가 직접 확인한 것과 AI만 확인한 것, 아직 검증하지 못한 것을 밝혀줘.'
     }
   };
+  const io={
+    interview:{input:'과제 · 실제 담당자 응답 · 업무자료',file:'01-discovery.md',ids:'E 근거 · C 사례 · 업무 범위와 Pain'},
+    problem:{input:'01-discovery.md 또는 직접 제공된 근거',file:'02-problem-definition.md',ids:'P 문제 → M 발생 과정 → O 개입 지점'},
+    requirements:{input:'02-problem-definition.md · 규칙 · 사용자 결정',file:'03-requirements.md',ids:'P/O와 연결된 R 요구 · 검증 기준'},
+    solutions:{input:'02-problem-definition.md · 03-requirements.md · 우선순위',file:'04-solution-evaluation.md',ids:'P/M/O/R과 연결된 S 대안 · X 실험 계획'},
+    verify:{input:'검토할 단계 문서 · 산출물 · 원자료 · 실행 증거',file:'05-verification.md',ids:'V 대조 결과 · 대상 ID · 돌아갈 문서와 항목'}
+  };
+  Object.keys(data).forEach(key=>{
+    Object.assign(data[key],io[key]);
+    data[key].prompt+='\n출력 양식에 맞춰 artifacts/<작업명>/'+io[key].file+'에 저장해줘.\n사용한 입력의 링크·버전·항목 ID와 가정·미확인을 보존해줘.\n전달할 항목: '+io[key].ids+'. 사용자 검토는 실제 피드백 전까지 미검토로 남겨줘.';
+  });
   const paths={full:['interview','problem','requirements','solutions','verify'],discovery:['interview','problem','verify']};
   let mode='full',current='interview';
   const $=id=>document.getElementById(id);
@@ -120,6 +136,7 @@
     paths[mode].forEach((key,i)=>{
       const d=data[key],article=make('article');article.className='print-step';
       article.append(make('h2',`${i+1}. ${d.title}`),make('small',d.skill),make('p',d.lead));
+      article.append(make('h3','입력 → Markdown 출력'),make('p',`${d.input} → ${d.file}`),make('p',d.ids),make('small','입력 링크·버전·ID, 사용자 검토 상태, 다음 단계 전달을 보존합니다.'));
       article.append(make('h3','이럴 때 사용'),make('p',d.when),make('h3','다음 단계로 넘길 것'));
       const ul=make('ul');d.outputs.forEach(x=>ul.append(make('li',x)));article.append(ul);
       article.append(make('h3',d.questionLabel),make('p',d.question),make('small',d.context),make('h3','넘어갈 기준'),make('p',d.gate),make('h3','지원 AI 호출 문장'),make('pre',d.prompt));container.append(article);
@@ -129,6 +146,7 @@
   function render(){
     const path=paths[mode],index=path.indexOf(current),d=data[current];
     document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));
+    document.querySelectorAll('[data-concept]').forEach(b=>{b.disabled=!path.includes(b.dataset.concept);b.classList.toggle('related',b.dataset.concept===current);b.title=b.disabled?'해결안까지 범위에서 사용합니다.':'관련 스킬 보기';});
     setText('scope-caption',mode==='full'?'성공 조건과 대안을 정한 뒤 결과를 검증합니다.':'문제 정의의 근거를 검증하고 제출합니다.');
     $('steps').replaceChildren();
     path.forEach((key,i)=>{
@@ -146,6 +164,10 @@
     setText('gate',d.gate);setText('back-reason',d.backReason);setText('back-button',d.backLabel);setText('prompt',d.prompt);
     $('skill-link').href=`../skills/${d.skill}/SKILL.md`;
     $('skill-link').setAttribute('aria-label',`${d.skill} 스킬 원문 보기`);
+    setText('input-docs',d.input);setText('output-file',d.file);setText('handoff-ids',d.ids);
+    $('guide-link').href=`skill-guide.html#${d.skill}/flow`;
+    $('template-link').href=`../skills/${d.skill}/assets/output-template.md`;
+    $('example-link').href=`examples/onboarding/${d.file}`;
     $('copy-status').hidden=true;setText('copy-status','');$('learning').hidden=current!=='verify';$('learning').open=false;
     setText('counter',`${index+1} / ${path.length} · ${mode==='full'?'해결안까지':'문제 발굴까지만'}`);
     setText('next-label',index===path.length-1?'제출 전 설명 확인':current==='solutions'?'산출물 작성 후 검증':`다음: ${data[path[index+1]].short}`);
@@ -158,6 +180,7 @@
   document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{
     mode=b.dataset.mode;if(!paths[mode].includes(current))current='problem';render();renderPrint();
   }));
+  document.querySelectorAll('[data-concept]').forEach(b=>b.addEventListener('click',()=>select(b.dataset.concept,true)));
   $('back-button').addEventListener('click',()=>{
     if(current==='interview'){
       setText('question',data.interview.alternateQuestion);setText('question-context',data.interview.alternateContext);

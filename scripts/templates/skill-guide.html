@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>스킬별 흐름과 문서 양식 · Product Skill Trees</title>
+<style>
+:root{--bg:#f5f5f0;--paper:#fff;--ink:#202c2b;--muted:#626e6b;--line:#dce1da;--green:#246552;--soft:#edf4ef;--orange:#985135;--warm:#fcf3eb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.75 "Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;word-break:keep-all}a{color:var(--green);text-underline-offset:4px}button{font:inherit;cursor:pointer}button,a{touch-action:manipulation}button:focus-visible,a:focus-visible,summary:focus-visible,.table-wrap:focus-visible{outline:3px solid #397bce;outline-offset:4px}button:disabled{cursor:default}code,pre{font-family:ui-monospace,SFMono-Regular,Consolas,"Apple SD Gothic Neo",monospace}code{overflow-wrap:anywhere}::selection{background:#d5e9dc}[hidden]{display:none!important}
+.wrap{width:min(1380px,calc(100% - 64px));margin:auto}.top{border-bottom:1px solid var(--line)}.top-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;gap:10px;align-items:center;font-size:12px;letter-spacing:.07em;font-weight:750;color:var(--ink);text-decoration:none}.mark{background:var(--green);color:white;border-radius:8px;width:28px;height:28px;display:grid;place-items:center;font-size:19px}.top-actions{display:flex;gap:20px;align-items:center}.top-actions a,.text-button{font-size:12px;color:var(--muted);background:none;border:0;text-decoration:none;padding:6px 0}.top-actions a:hover,.text-button:hover{color:var(--green)}
+.hero{padding:36px 0 28px}.eyebrow{color:var(--green);font-size:11px;font-weight:750;letter-spacing:.12em}.hero h1{font-size:clamp(27px,3.8vw,40px);line-height:1.25;letter-spacing:-.055em;margin:10px 0 12px}.hero p{color:var(--muted);margin:0;max-width:850px;font-size:14px}.workspace{display:grid;grid-template-columns:252px minmax(0,1fr);gap:32px;align-items:start}.sidebar{position:sticky;top:22px}.sidebar-label{font-size:11px;color:var(--muted);letter-spacing:.07em;font-weight:700;margin:0 0 12px}.stages{display:grid;gap:7px}.stage-link{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:13px 12px;border:1px solid transparent;border-radius:10px;color:var(--ink);text-decoration:none}.stage-link:hover{background:#edf0e9}.stage-link[aria-current="step"]{background:var(--soft);border-color:#b8cec0}.stage-index{font:12px/2 ui-monospace,monospace;color:var(--muted)}.stage-link[aria-current] .stage-index{color:var(--green)}.stage-link strong{font-size:14px;display:block}.stage-link small{display:block;color:var(--muted);font:10px/1.8 ui-monospace,monospace;overflow-wrap:anywhere}.sidebar-note{font-size:12px;color:var(--muted);padding:17px 12px;border-top:1px solid var(--line);margin:22px 0 0}.sidebar-note strong{color:var(--ink)}.sidebar-note a{display:inline-block;margin-top:9px}
+.content{min-width:0;background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden}.content-head{padding:28px 32px 0}.skill-top{display:flex;gap:14px;align-items:center;justify-content:space-between}.concept{font-size:11px;letter-spacing:.015em;color:var(--green);background:var(--soft);padding:4px 9px;border-radius:5px}.skill-source{font-size:12px;color:var(--muted);white-space:nowrap}.content-head h2{font-size:28px;letter-spacing:-.045em;margin:14px 0 2px;line-height:1.35}.skill-name{font-size:12px;color:var(--green)}.when{font-size:14px;color:var(--muted);margin:12px 0 21px}.io{display:grid;grid-template-columns:1fr 26px 1fr;align-items:start;gap:16px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.label{color:var(--muted);font-size:10px;font-weight:750;letter-spacing:.09em;margin:0 0 5px}.io p:not(.label){font-size:13px;margin:0}.io code{font-size:12px}.io small{display:block;font-size:12px;color:var(--muted);margin-top:4px}.io-arrow{color:#899c8f;margin-top:22px}.view-nav{display:flex;gap:4px;padding-top:22px;flex-wrap:wrap}.view-nav button{background:none;border:0;border-bottom:3px solid transparent;padding:10px 15px;color:var(--muted);font-size:13px}.view-nav button[aria-pressed="true"]{color:var(--green);font-weight:750;border-bottom-color:var(--green)}.view-nav button:hover{background:#f6f8f3}.panel{padding:26px 32px 30px;border-top:1px solid var(--line)}
+.flow-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(200px,1fr);gap:30px}.panel-title{font-size:14px;font-weight:750;margin:0 0 20px}.flow-steps{list-style:none;padding:0;margin:0}.flow-step{display:grid;grid-template-columns:30px minmax(0,1fr);gap:13px;position:relative;padding-bottom:24px}.flow-step:not(:last-child):before{content:"";position:absolute;left:14px;top:31px;bottom:3px;width:1px;background:var(--line)}.flow-step:last-child{padding-bottom:0}.flow-number{border:1px solid #c3d5c9;color:var(--green);border-radius:50%;width:29px;height:29px;display:grid;place-items:center;font-size:11px;background:var(--soft);position:relative}.flow-step h4{font-size:14px;line-height:1.7;margin:1px 0 5px;font-weight:700}.flow-step p{font-size:13px;color:var(--muted);margin:0}.review{padding-left:24px;border-left:1px solid var(--line)}.review ul{list-style:none;padding:0;margin:0}.review li{font-size:13px;margin-bottom:15px;padding-left:15px;position:relative}.review li:before{content:"·";color:var(--green);position:absolute;left:0}.review-note{color:var(--muted);font-size:12px;border-top:1px solid var(--line);padding-top:14px;margin-top:20px}.return-note{background:var(--warm);border-radius:10px;padding:15px 18px;margin:26px 0 23px;color:var(--orange);font-size:13px}.return-note strong{display:block;font-size:11px;letter-spacing:.02em;margin-bottom:4px}.handoff{border-top:1px solid var(--line);padding-top:19px}.handoff h3{margin:0 0 10px;font-size:13px}.handoff-links{display:flex;gap:8px;flex-wrap:wrap}.handoff-link{border:1px solid var(--line);border-radius:8px;padding:9px 12px;color:var(--ink);text-decoration:none;font-size:12px}.handoff-link:hover{border-color:#8eaf9c;background:var(--soft)}.handoff-link span{color:var(--muted);display:block;font-size:11px}.flow-footer{font-size:12px;color:var(--muted);margin:20px 0 0}.inline-button{border:0;background:none;color:var(--green);font:inherit;text-decoration:underline;text-underline-offset:4px;padding:0}
+.doc-intro{font-size:13px;color:var(--muted);margin:0 0 15px}.doc-tools{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--line);padding-bottom:15px}.doc-tools-group{display:flex;gap:7px;flex-wrap:wrap}.button{border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);font-size:12px;padding:7px 11px;text-decoration:none}.button:hover{background:var(--soft)}.button[aria-pressed="true"]{background:var(--ink);color:white;border-color:var(--ink)}.doc-link{font-size:12px}.feedback{font-size:12px;color:var(--green);min-height:22px;margin:6px 0 0}.outline{font-size:12px;color:var(--muted);margin:0 0 20px}.outline summary{cursor:pointer;width:max-content}.outline nav{display:flex;flex-wrap:wrap;gap:5px 16px;margin-top:9px}.outline a{color:var(--muted)}.markdown{font-size:14px;overflow-wrap:anywhere}.markdown h1{font-size:24px;line-height:1.4;letter-spacing:-.035em;margin:17px 0}.markdown h2{font-size:17px;line-height:1.5;margin:30px 0 12px;padding-top:20px;border-top:1px solid var(--line);scroll-margin-top:22px}.markdown h3{font-size:15px;margin:20px 0 10px}.markdown p{margin:11px 0}.markdown ul,.markdown ol{padding-left:22px}.markdown li{margin:8px 0}.markdown code{font-size:12px;background:#eef2ed;padding:2px 4px;border-radius:4px;white-space:normal}.markdown blockquote{border-left:3px solid #bdcfc0;margin:16px 0;padding:9px 14px;color:var(--muted);background:#f6f8f3;font-size:12px}.markdown blockquote p{margin:3px 0}.slot{color:#527560;background:#f2f6f0;border-radius:4px;padding:2px 3px;font-size:12px}.table-wrap{width:100%;overflow:auto;margin:15px 0 21px;border:1px solid var(--line);border-radius:8px}.markdown table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.7;table-layout:auto}.markdown th{text-align:left;background:#f4f6f1;color:#485c51;font-weight:700}.markdown th,.markdown td{padding:11px 12px;vertical-align:top;border-bottom:1px solid var(--line);min-width:105px}.markdown tr:last-child td{border-bottom:0}.markdown th:first-child,.markdown td:first-child{min-width:85px}.markdown table.wide-table{min-width:780px}.markdown table.extra-wide-table{min-width:1020px}.raw{font-size:12px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere;padding:22px;background:#202e2b;color:#ecf3ee;border-radius:10px;margin:15px 0 0}.example-source{margin-top:25px;border-top:1px solid var(--line);padding-top:18px}.example-source summary{font-size:13px;color:var(--green);font-weight:700;cursor:pointer}.source-path{font:11px/1.7 ui-monospace,monospace;color:var(--muted);overflow-wrap:anywhere;margin:16px 0 0}.source-path span{display:block;font-family:inherit}.footer{padding:24px 0 34px;color:var(--muted);font-size:11px}.footer a{color:var(--muted)}.no-js{padding:25px;background:var(--warm)}
+@media(min-width:1600px){.wrap{width:min(1450px,calc(100% - 96px))}}
+@media(max-width:1050px){.wrap{width:calc(100% - 40px)}.workspace{grid-template-columns:205px minmax(0,1fr);gap:20px}.stage-link{gap:6px;padding:12px 8px}.stage-link small{font-size:9px}.content-head{padding:23px 24px 0}.panel{padding:23px 24px}.flow-grid{grid-template-columns:1fr;gap:24px}.review{padding:20px 0 0;border-left:0;border-top:1px solid var(--line)}.review ul{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.review li{margin:0}.review .panel-title{margin-bottom:14px}}
+@media(max-width:720px){.wrap{width:calc(100% - 28px)}.top-inner{min-height:62px;gap:10px}.brand{font-size:10px;letter-spacing:.025em;gap:7px}.mark{width:23px;height:23px;font-size:16px}.top-actions{gap:12px}.top-actions a,.text-button{font-size:11px}.hero{padding:25px 0 22px}.hero p{font-size:13px}.workspace{display:block}.sidebar{position:static}.sidebar-label,.sidebar-note{display:none}.stages{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin-bottom:15px}.stage-link{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;border:1px solid var(--line);border-radius:8px;padding:9px 3px;height:100%;background:#fafbf8}.stage-index{font-size:10px;line-height:1.4}.stage-link strong{font-size:11px;line-height:1.45}.stage-link small{display:none}.content{border-radius:12px}.content-head{padding:21px 19px 0}.content-head h2{font-size:24px;margin-top:12px}.skill-top{gap:8px;flex-wrap:wrap}.concept{font-size:10px}.skill-source{font-size:11px}.when{font-size:13px}.io{grid-template-columns:1fr;gap:12px;padding:16px 0}.io-arrow{display:none}.io code{font-size:12px}.view-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding-top:14px}.view-nav button{font-size:11px;padding:12px 2px}.panel{padding:22px 19px}.review ul{display:block}.review li{margin-bottom:12px}.handoff-links{display:grid}.handoff-link{font-size:12px}.doc-tools{align-items:flex-start}.doc-tools-group{gap:5px}.button{font-size:11px;padding:9px}.doc-link{font-size:11px;padding:8px 0}.markdown{font-size:13px}.markdown h1{font-size:21px}.markdown h2{font-size:16px}.raw{padding:14px;font-size:11px}.footer{font-size:10px}}
+@media print{body{background:white;font-size:10pt}.wrap{width:100%}.top,.hero,.sidebar,.view-nav,.doc-tools,.feedback,.outline,.skill-source,.footer,.flow-footer,.source-path{display:none!important}.workspace{display:block}.content{border:0;overflow:visible}.content-head{padding:0}.panel{padding:20px 0}.content-head h2{font-size:23pt}.flow-grid{grid-template-columns:1.5fr 1fr}.table-wrap{overflow:visible;border:0}.markdown table.wide-table,.markdown table.extra-wide-table{min-width:0;table-layout:fixed}.markdown td,.markdown th{min-width:0;padding:5px;font-size:8pt;overflow-wrap:anywhere}.markdown h2{break-after:avoid}.markdown tr,.flow-step{break-inside:avoid}.raw{background:white;color:black;border:1px solid #ccc;font-size:9pt}.example-source:not([open]){display:none}.slot{background:transparent}.content-head h2,.markdown h1{color:black}.concept{background:none;padding:0}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap top-inner"><a href="skill-map.html" class="brand"><span class="mark" aria-hidden="true">↳</span>PRODUCT SKILL TREES</a><div class="top-actions"><a href="skill-map.html">전체 스킬맵 ↗</a><button class="text-button" id="print" type="button">현재 보기 인쇄</button></div></div></header>
+<main class="wrap">
+<section class="hero"><div class="eyebrow">SKILL FIELD GUIDE</div><h1>스킬별 흐름과 문서 양식</h1><p>지금 필요한 스킬을 고르고, 무엇을 읽고 어떻게 판단해 어떤 문서를 남기는지 살펴보세요.<br>출력 양식과 가상 작성 예제는 화면에서 읽고 Markdown으로 복사할 수 있습니다.</p></section>
+<noscript><p class="no-js">이 안내의 탭 전환에는 JavaScript가 필요합니다. <a href="handoff-contract.md">Markdown 전달 규약</a> 또는 <a href="skill-map.md">Markdown 스킬맵</a>을 이용해 주세요.</p></noscript>
+<div class="workspace">
+<aside class="sidebar"><p class="sidebar-label">SELECT A SKILL</p><nav class="stages" id="stages" aria-label="스킬 선택"></nav><p class="sidebar-note"><strong>필요한 단계에서 시작하세요.</strong><br>앞 단계 파일은 필수가 아닙니다. 직접 자료로 시작하고, 요청된 범위만 진행합니다.<br><a href="handoff-contract.md">입력·출력 규약 ↗</a></p></aside>
+<article class="content" aria-labelledby="skill-title">
+<div class="content-head"><div class="skill-top"><span class="concept" id="concept"></span><a class="skill-source" id="skill-source" href="#">SKILL.md ↗</a></div><h2 id="skill-title"></h2><code class="skill-name" id="skill-name"></code><p class="when" id="when"></p><div class="io"><div><p class="label">INPUT · 읽을 자료</p><p id="input"></p></div><span class="io-arrow" aria-hidden="true">→</span><div><p class="label">OUTPUT · 남길 문서</p><code id="output"></code><small id="ids"></small></div></div><nav class="view-nav" aria-label="스킬 상세 보기"><button type="button" data-view="flow" aria-pressed="true">진행 흐름</button><button type="button" data-view="template" aria-pressed="false">출력 양식</button><button type="button" data-view="example" aria-pressed="false">작성 예제</button><button type="button" data-view="rules" aria-pressed="false">스킬 원문</button></nav></div>
+<section id="flow-panel" class="panel" aria-label="진행 흐름"></section>
+<section id="document-panel" class="panel" aria-label="문서 보기" hidden><p id="doc-intro" class="doc-intro"></p><div class="doc-tools"><div class="doc-tools-group"><button type="button" id="raw-toggle" class="button" aria-pressed="false">Markdown 보기</button><button type="button" id="copy" class="button">MD 복사</button><button type="button" id="download" class="button">MD 내려받기</button></div><a id="doc-link" class="doc-link" href="#">원본 파일 ↗</a></div><p class="feedback" id="feedback" role="status" aria-live="polite"></p><details class="outline" id="outline"><summary>문서 목차</summary><nav id="outline-links" aria-label="문서 목차"></nav></details><div class="markdown" id="rendered"></div><pre class="raw" id="raw" hidden></pre><details class="example-source" id="example-source" hidden><summary>이 예제에 사용한 가상 입력 보기</summary><div class="markdown" id="source-rendered"></div></details><p class="source-path" id="source-path"></p></section>
+</article></div>
+<footer class="footer">기본 저장 위치: <code>artifacts/&lt;작업명&gt;/</code> · 사용자 검토는 실제 피드백 전까지 미검토 · 이 화면은 스킬·양식 안내이며 에이전트를 실행하지 않습니다.<br>내용을 갱신할 때는 저장소의 Markdown을 수정한 후 <code>python3 scripts/build_skill_guide.py</code>를 실행합니다.</footer>
+</main>
+<script type="application/json" id="guide-data">__SKILL_GUIDE_DATA__</script>
+<script>
+'use strict';
+const data=JSON.parse(document.getElementById('guide-data').textContent);
+const stages=data.stages, bySlug=Object.fromEntries(stages.map(s=>[s.slug,s]));
+const views=['flow','template','example','rules'];
+const $=id=>document.getElementById(id);
+let current=stages[0], view='flow', rawMode=false;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function linked(dest,label,base){
+  let url;
+  try{url=new URL(dest,new URL(base,location.href));}catch{return esc(label);}
+  if(!['file:','http:','https:','mailto:'].includes(url.protocol))return esc(label);
+  let href=url.href;
+  for(const s of stages)for(const [v,doc] of Object.entries(s.documents)){
+    if(url.href===new URL(doc.path,location.href).href)href='#'+s.slug+'/'+v;
+  }
+  return '<a href="'+esc(href)+'">'+inline(label,base)+'</a>';
+}
+function inline(text,base){
+  const pattern=/`([^`]+)`|\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|\{\{([^}]+)\}\}/g;
+  let out='',last=0,match;
+  while((match=pattern.exec(text))){
+    out+=esc(text.slice(last,match.index));
+    if(match[1]!==undefined)out+='<code>'+esc(match[1])+'</code>';
+    else if(match[2]!==undefined)out+=linked(match[3],match[2],base);
+    else if(match[4]!==undefined)out+='<strong>'+esc(match[4])+'</strong>';
+    else out+='<span class="slot">'+esc('{{'+match[5]+'}}')+'</span>';
+    last=pattern.lastIndex;
+  }
+  return out+esc(text.slice(last));
+}
+function renderMarkdown(source,base,prefix){
+  const lines=source.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/,'').replace(/<!--[\s\S]*?-->/g,'').split(/\r?\n/);
+  const cells=line=>line.trim().replace(/^\||\|$/g,'').split(/(?<!\\)\|/).map(x=>x.trim().replace(/\\\|/g,'|'));
+  let html='',i=0,heading=0;
+  const toc=[];
+  const boundary=line=>/^(#{1,6}\s|\||[-*]\s|\d+\.\s|>|```)/.test(line)||!line.trim();
+  while(i<lines.length){
+    const line=lines[i];
+    if(!line.trim()){i++;continue;}
+    if(line.startsWith('```')){
+      const block=[];i++;while(i<lines.length&&!lines[i].startsWith('```'))block.push(lines[i++]);i++;
+      html+='<pre class="raw">'+esc(block.join('\n'))+'</pre>';continue;
+    }
+    const h=line.match(/^(#{1,6})\s+(.+)$/);
+    if(h){const level=h[1].length,id=prefix+'-section-'+heading++;html+='<h'+level+' id="'+id+'">'+inline(h[2],base)+'</h'+level+'>';if(level===2)toc.push([id,h[2]]);i++;continue;}
+    if(line.startsWith('|')&&i+1<lines.length&&/^\|[\s:|-]+\|\s*$/.test(lines[i+1])){
+      const heads=cells(line),wide=heads.length>6?'extra-wide-table':heads.length>4?'wide-table':'';
+      html+='<div class="table-wrap" tabindex="0" role="region" aria-label="'+esc(heads[0])+' 표, 가로로 스크롤 가능"><table class="'+wide+'"><thead><tr>'+heads.map(x=>'<th scope="col">'+inline(x,base)+'</th>').join('')+'</tr></thead><tbody>';
+      i+=2;while(i<lines.length&&lines[i].startsWith('|')){html+='<tr>'+cells(lines[i++]).map(x=>'<td>'+inline(x,base)+'</td>').join('')+'</tr>';}
+      html+='</tbody></table></div>';continue;
+    }
+    if(/^[-*]\s/.test(line)||/^\d+\.\s/.test(line)){
+      const ordered=/^\d+\.\s/.test(line),pattern=ordered?/^\d+\.\s/:/^[-*]\s/,tag=ordered?'ol':'ul';
+      html+='<'+tag+'>';while(i<lines.length&&pattern.test(lines[i]))html+='<li>'+inline(lines[i++].replace(pattern,''),base)+'</li>';html+='</'+tag+'>';continue;
+    }
+    if(/^>/.test(line)){const quote=[];while(i<lines.length&&/^>/.test(lines[i]))quote.push(lines[i++].replace(/^>\s?/,''));html+='<blockquote>'+quote.map(x=>'<p>'+inline(x,base)+'</p>').join('')+'</blockquote>';continue;}
+    const paragraph=[line];i++;while(i<lines.length&&!boundary(lines[i]))paragraph.push(lines[i++]);
+    html+='<p>'+inline(paragraph.join(' '),base)+'</p>';
+  }
+  return {html,toc};
+}
+function renderFlow(){
+  $('flow-panel').innerHTML='<div class="flow-grid"><div><h3 class="panel-title">이 스킬 안에서 하는 일</h3><ol class="flow-steps">'+current.steps.map((s,i)=>'<li class="flow-step"><span class="flow-number">'+(i+1)+'</span><div><h4>'+esc(s[0])+'</h4><p>'+esc(s[1])+'</p></div></li>').join('')+'</ol></div><aside class="review"><h3 class="panel-title">내가 확인할 점</h3><ul>'+current.review.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><p class="review-note">문서 완성 · AI 검증 · 사용자 검토 · 최종 선택을 구분합니다. 전체 진행 위임만으로 사용자 검토를 완료 처리하지 않습니다.</p></aside></div><p class="return-note"><strong>불확실하거나 돌아가야 할 때</strong>'+esc(current.return)+'</p><div class="handoff"><h3>다음 단계와 연결</h3><div class="handoff-links">'+current.next.map(([slug,note])=>'<a class="handoff-link" href="#'+slug+'/flow">'+esc(bySlug[slug].short)+' →<span>'+esc(note)+'</span></a>').join('')+'</div></div><p class="flow-footer">단계 결과는 <button class="inline-button" data-switch="template" type="button">정형 MD 양식</button>으로 남기고, 문서 링크·사용 버전·항목 ID와 가정 상태를 다음 단계에 전달합니다.</p>';
+  $('flow-panel').querySelector('[data-switch]').addEventListener('click',()=>navigate(current.slug,'template'));
+}
+function renderDocument(){
+  const doc=current.documents[view];
+  $('doc-intro').textContent={template:'실제 출력 양식입니다. {{…}}를 근거에 맞춰 채우고 모르는 값은 미확인으로 남깁니다. 넓은 표는 좌우로 스크롤할 수 있습니다.',example:'같은 가상 온보딩 사례로 작성한 예제입니다. 실제 기업 조사·운영 실험 결과가 아닙니다. 아래에서 예제 입력도 함께 확인할 수 있습니다.',rules:'저장소의 SKILL.md 전문입니다. 흐름 요약보다 상세한 판단 기준과 예외, 입력·출력 규칙을 확인할 수 있습니다.'}[view];
+  $('doc-link').href=doc.path;
+  $('raw').textContent=doc.text;
+  const rendered=renderMarkdown(doc.text,doc.path,'doc');
+  $('rendered').innerHTML=rendered.html;
+  $('outline-links').innerHTML=rendered.toc.map(([id,text])=>'<a href="#'+id+'" data-section="'+id+'">'+esc(text)+'</a>').join('');
+  $('outline-links').querySelectorAll('a').forEach(a=>a.addEventListener('click',event=>{event.preventDefault();$(a.dataset.section).scrollIntoView({block:'start'});}));
+  $('outline').open=false;
+  $('example-source').hidden=view!=='example';$('example-source').open=false;
+  $('source-rendered').innerHTML=view==='example'?renderMarkdown(data.source.text,data.source.path,'input').html:'';
+  $('source-path').textContent=doc.path.replace(/^\.\.\//,'');
+  syncRaw();
+}
+function syncRaw(){
+  $('rendered').hidden=rawMode;$('raw').hidden=!rawMode;$('outline').hidden=rawMode;
+  $('raw-toggle').setAttribute('aria-pressed',String(rawMode));$('raw-toggle').textContent=rawMode?'문서 보기':'Markdown 보기';
+}
+function render(){
+  $('stages').innerHTML=stages.map((s,i)=>'<a class="stage-link" href="#'+s.slug+'/'+view+'"'+(s===current?' aria-current="step"':'')+'><span class="stage-index">0'+(i+1)+'</span><span><strong>'+esc(s.short)+'</strong><small>'+esc(s.slug)+'</small></span></a>').join('');
+  $('concept').textContent=current.concept;$('skill-title').textContent=current.title;$('skill-name').textContent=current.slug;$('when').textContent=current.when;
+  $('skill-source').href=current.documents.rules.path;$('input').textContent=current.input;$('output').textContent=current.file;$('ids').textContent=current.ids;
+  document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
+  $('flow-panel').hidden=view!=='flow';$('document-panel').hidden=view==='flow';$('feedback').textContent='';
+  if(view==='flow')renderFlow();else renderDocument();
+  document.title=current.short+' · '+({flow:'진행 흐름',template:'출력 양식',example:'작성 예제',rules:'스킬 원문'}[view])+' · Product Skill Trees';
+}
+function fromHash(){const [slug,v]=location.hash.slice(1).split('/');current=bySlug[slug]||stages[0];view=views.includes(v)?v:'flow';rawMode=false;render();}
+function navigate(slug,v){location.hash=slug+'/'+v;}
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>navigate(current.slug,b.dataset.view)));
+$('raw-toggle').addEventListener('click',()=>{rawMode=!rawMode;syncRaw();});
+$('copy').addEventListener('click',async()=>{
+  const text=current.documents[view].text;
+  try{
+    if(navigator.clipboard&&navigator.clipboard.writeText)await navigator.clipboard.writeText(text);
+    else{
+      const field=document.createElement('textarea');field.value=text;field.style.cssText='position:fixed;left:-9999px';document.body.append(field);field.select();const ok=document.execCommand('copy');field.remove();if(!ok)throw new Error('Copy unavailable');
+    }
+    $('feedback').textContent='Markdown 전체를 복사했습니다.';
+  }catch{$('feedback').textContent='자동 복사가 허용되지 않았습니다. Markdown 보기에서 선택해 복사하거나 내려받아 주세요.';}
+});
+$('download').addEventListener('click',()=>{
+  const doc=current.documents[view],blob=new Blob([doc.text],{type:'text/markdown;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download=view==='rules'?current.slug+'-SKILL.md':view==='example'?'example-'+current.file:current.file;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  $('feedback').textContent='현재 Markdown의 내려받기를 요청했습니다.';
+});
+$('print').addEventListener('click',()=>window.print());
+window.addEventListener('hashchange',fromHash);
+fromHash();
+</script>
+</body>
+</html>
