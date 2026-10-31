@@ -300,5 +300,6 @@ $verify-work-results
 - [최종 계획과 개발 착수](development-handoff.md) · [PLAN 양식](../templates/PLAN.template.md)
 - [Worklog 양식](../templates/WORKLOG.template.md) · [협업 시작·계획·구현 요청 문구](../PROMPTS.md)
 - [디자인 스킬 설치와 연계](../skills/design-skills.md)
+- [웹 제품의 검토 결과 연결](development-handoff.md#웹-제품의-검토-결과-연결): PLAN의 R/S-ID → 정형 화면 검토·브라우저 테스트 MD → 05의 V-ID, 결정·변경 이유 → Worklog의 D-ID
 
 공개 자료 조사가 별도로 요구되면 사용 가능한 조사 도구를 활용한다. 담당자 과제의 업무 사실을 일반적인 인터넷 자료로 대체하지 않는다. 과제의 도구·자료·제출 범위를 우선한다.

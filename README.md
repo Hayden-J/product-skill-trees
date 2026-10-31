@@ -70,6 +70,8 @@ AGENTS.md, 과제 README, templates/AGENTS.template.md를 읽고
 
 필요할 때 원본에서 선택 설치합니다. [설치 명령·입출력 연결·요청 예시](skills/design-skills.md)
 
+웹 작업은 PLAN의 R/S-ID에 연결하고, 화면 검토·브라우저 테스트는 시나리오·기대 결과·실제 결과·증거·미확인을 담은 정형 MD로 남깁니다. 검증 판단은 05에, 결정·변경 이유는 Worklog에 연결합니다. [기록 양식과 흐름](docs/development-handoff.md#웹-제품의-검토-결과-연결)
+
 과제의 목표·필수 조건·제출 형식·허용 도구를 우선합니다. 가상 과제의 응답을 실제 기업의 현장 증거로 표현하지 않습니다. 설치 검사는 `bash -n setup.sh`와 `python3 scripts/test_setup.py`로 실행하며, 테스트는 임시 폴더를 사용합니다.
 
 [MIT License](LICENSE)

@@ -12,7 +12,8 @@
 ```text
 docs/PLAN.md의 개발 범위·우선순위 + 03의 R-ID + 04의 선택한 S-ID
   → frontend-design: 요구와 선택한 방법에 맞춰 화면 설계·구현
-  → web-design-guidelines: 화면 코드의 UI 품질 점검
+  → web-design-guidelines: 화면 코드의 UI 품질 점검 → ui-review.md
+  → 사용 가능한 브라우저 도구로 실제 조작 확인 → browser-test-results.md
   → 발견한 문제 수정·재점검
   → verify-work-results: 요구사항·원자료와 결과를 대조해 05-verification.md 작성
 ```
@@ -21,7 +22,9 @@ docs/PLAN.md의 개발 범위·우선순위 + 03의 R-ID + 04의 선택한 S-ID
 
 앞 단계 파일이 없으면 확인된 요구·선택과 직접 자료를 전달합니다. 디자인을 위해 01~04 문서를 모두 새로 만들 필요는 없습니다.
 
-외부 스킬의 기본 결과 형식은 각각 다릅니다. 이 저장소의 MD 흐름과 연결할 때는 디자인 결정·화면 파일 경로·UI 점검 결과·미확인을 남기고, `05-verification.md`의 입력표에 해당 자료와 관련 R/S-ID를 연결합니다.
+외부 스킬의 기본 결과 형식은 각각 다릅니다. 작업 대상은 PLAN의 R/S-ID(해당 시 U-ID·부모 S-ID)에 연결하고, 화면 검토와 브라우저 테스트는 [공통 AGENTS의 정형 Markdown 양식](../templates/AGENTS.template.md#웹-제품의-화면-검토브라우저-테스트-기록)으로 저장합니다. 각 항목에 시나리오·기대 결과·실제 결과·증거·미확인을 남기며, 코드 검토만으로 실제 조작을 확인했다고 하지 않습니다.
+
+`05-verification.md`에는 검토 문서·리비전·확인 ID와 R/S-ID를 연결해 판단과 한계를 요약합니다. 디자인 결정·변경 이유는 `docs/WORKLOG.md`의 D-ID에 연결하고, PLAN의 범위·기준이 달라지면 함께 갱신합니다. [기록 위치와 연결 흐름](../docs/development-handoff.md#웹-제품의-검토-결과-연결)
 
 ## 필요할 때 설치하기
 
@@ -43,13 +46,28 @@ docs/PLAN.md와 연결된 03-requirements.md, 04-solution-evaluation.md를 읽�
 대상 사용자·기존 디자인·R-ID의 요구와 제약을 보존하고,
 디자인 결정과 연결된 R/S-ID, 구현 파일 경로, 확인한 범위를
 artifacts/고객온보딩/design-notes.md에 남겨줘.
+실제 결정·변경 이유는 docs/WORKLOG.md의 D-ID에 연결해줘.
 ```
 
 ```text
 $web-design-guidelines
 구현한 화면 파일을 최신 지침으로 검토해줘.
-파일·행별 문제와 검토 범위·미확인을
+PLAN의 R/S-ID와 연결하고 공통 AGENTS의 웹 검토 양식으로
+시나리오·기대 결과·실제 결과·파일과 행 등 증거·미확인을
 artifacts/고객온보딩/ui-review.md에 남겨줘.
+검증 판단은 같은 작업의 05-verification.md에,
+실제 결정·변경 이유는 docs/WORKLOG.md의 D-ID에 연결해줘.
+직접 조작하지 않은 항목은 브라우저 테스트 통과로 표시하지 마.
+```
+
+```text
+PLAN의 R/S-ID와 연결된 화면·기능을 사용 가능한 브라우저 도구로 확인해줘.
+과제 환경의 Browser 접속 규칙을 따르고 버튼·입력·이동을 실제로 조작해줘.
+공통 AGENTS의 웹 검토 양식으로 시나리오·기대 결과·실제 결과·증거·미확인을
+artifacts/고객온보딩/browser-test-results.md에 남겨줘.
+검증 판단은 같은 작업의 05-verification.md에,
+실제 결정·변경 이유는 docs/WORKLOG.md의 D-ID에 연결해줘.
+실행하지 못한 검사는 미실행과 이유를 남겨줘.
 ```
 
 [최종 계획과 개발 착수](../docs/development-handoff.md) · [README로 돌아가기](../README.md)
