@@ -19,7 +19,7 @@ bash /복제한/경로/product-skill-trees/setup.sh
 - 문서: 과제용 `AGENTS.md`, `docs/PLAN.md`, `docs/WORKLOG.md`, `templates/`의 재사용 양식 3개, `PROMPTS.md`
 - 스킬: `.agents/skills/`에 다섯 스킬의 본문·출력 양식·참고 자료·라이선스. [Codex 프로젝트 스킬 경로](https://learn.chatgpt.com/docs/build-skills)
 
-새 PLAN은 초안, Worklog는 빈 양식입니다. 외부 디자인 스킬 설치, 서버·Codex 실행, 계획 작성은 수행하지 않습니다.
+새 PLAN은 초안, Worklog는 빈 양식입니다. 외부 디자인·개발 스킬과 도구 설치, 서버·Codex 실행, 계획 작성은 수행하지 않습니다.
 
 공통 작업 규칙의 원본은 [AGENTS.template.md](templates/AGENTS.template.md)입니다. 루트 [AGENTS.md](AGENTS.md)는 이를 읽도록 지시하고 저장소 정비 규칙만 추가합니다.
 
@@ -71,6 +71,12 @@ AGENTS.md, 과제 README, templates/AGENTS.template.md를 읽고
 필요할 때 원본에서 선택 설치합니다. [설치 명령·입출력 연결·요청 예시](skills/design-skills.md)
 
 웹 작업은 PLAN의 R/S-ID에 연결하고, 화면 검토·브라우저 테스트는 시나리오·기대 결과·실제 결과·증거·미확인을 담은 정형 MD로 남깁니다. 검증 판단은 05에, 결정·변경 이유는 Worklog에 연결합니다. [기록 양식과 흐름](docs/development-handoff.md#웹-제품의-검토-결과-연결)
+
+## 후속 연계 스킬·도구: 개발
+
+새 프로젝트의 초기 설정·구현에는 Context7과 선택한 기술의 스킬을, 웹 기능 검증에는 사용 가능한 브라우저 도구나 Playwright를 활용합니다. Serena는 코드가 쌓여 참조 관계를 추적할 때, systematic-debugging은 오류·테스트 실패를 조사할 때 연결합니다.
+
+필요한 항목만 선택 설치하며, 구현·검증 결과를 PLAN과 05·Worklog에 연결합니다. [개발 스킬·도구의 사용 시점·설치·요청 예시](skills/Development-skill-set.md)
 
 과제의 목표·필수 조건·제출 형식·허용 도구를 우선합니다. 가상 과제의 응답을 실제 기업의 현장 증거로 표현하지 않습니다. 설치 검사는 `bash -n setup.sh`와 `python3 scripts/test_setup.py`로 실행하며, 테스트는 임시 폴더를 사용합니다.
 

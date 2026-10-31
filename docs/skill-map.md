@@ -293,13 +293,14 @@ $verify-work-results
 최초 답변을 보존하고 빠진 근거나 논리를 피드백해줘.
 ```
 
-## 최종 계획·Worklog·후속 디자인
+## 최종 계획·Worklog·후속 디자인·개발
 
 실제 선택·위임과 단계 결과를 `docs/PLAN.md`에 종합한 뒤 요청·확정된 범위부터 개발한다. 에이전트는 실제 질문·결정·작업·검증 결과를 `docs/WORKLOG.md`에 별도 요청 없이 기록하고, 변경된 결정은 PLAN과 해당 단계 문서에 연결한다. 배포되는 Worklog는 기록 행이 없는 상태다.
 
 - [최종 계획과 개발 착수](development-handoff.md) · [PLAN 양식](../templates/PLAN.template.md)
 - [Worklog 양식](../templates/WORKLOG.template.md) · [협업 시작·계획·구현 요청 문구](../PROMPTS.md)
 - [디자인 스킬 설치와 연계](../skills/design-skills.md)
+- [개발 스킬·도구 설치와 연계](../skills/Development-skill-set.md): 신규 코드 작성 → 기술·버전 확인과 해당 기술의 스킬 적용 → 기능·브라우저 검증. 코드가 쌓이면 Serena, 오류가 발생하면 systematic-debugging을 연결하며 결과는 PLAN의 R/S-ID → 05·Worklog로 이어서 기록
 - [웹 제품의 검토 결과 연결](development-handoff.md#웹-제품의-검토-결과-연결): PLAN의 R/S-ID → 정형 화면 검토·브라우저 테스트 MD → 05의 V-ID, 결정·변경 이유 → Worklog의 D-ID
 
 공개 자료 조사가 별도로 요구되면 사용 가능한 조사 도구를 활용한다. 담당자 과제의 업무 사실을 일반적인 인터넷 자료로 대체하지 않는다. 과제의 도구·자료·제출 범위를 우선한다.
