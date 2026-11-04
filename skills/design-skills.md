@@ -9,8 +9,11 @@
 
 ## 기존 스킬과 연결하기
 
+사용자 과업·화면·상태·복구 설계는 기본 설치되는 [design-ux](design-ux/SKILL.md)를 사용한다. 아래 외부 스킬은 그 결과를 화면 구현과 품질 점검에 연결한다.
+
 ```text
 현재 기준 문서의 개발 범위·우선순위 + 요구 R-ID + 실제 선택 S-ID
+  → design-ux: 첫 사용자 과업의 화면·행동·상태·복구와 공유 입출력
   → frontend-design: 요구와 선택한 방법에 맞춰 화면 설계·구현
   → web-design-guidelines: 화면 코드의 UI 품질 점검 → 현재 검증 절 또는 긴 ui-review.md
   → 사용 가능한 브라우저 도구로 실제 조작 확인 → 현재 검증 절 또는 긴 browser-test-results.md
@@ -45,7 +48,7 @@ $frontend-design
 선택된 해결안의 화면을 요청·확정된 범위와 우선순위에 따라 설계·구현해줘.
 대상 사용자·기존 디자인·R-ID의 요구와 제약을 보존하고,
 디자인 결정과 연결된 R/S-ID, 구현 파일 경로, 확인한 범위를
-현재 기준 문서에 남기고, 긴 상세만 artifacts/고객온보딩/design-notes.md로 분리해줘.
+현재 기준 문서에 남기고, 긴 상세만 docs/artifacts/design-notes.md로 분리해줘.
 실제 결정·변경 이유는 docs/WORKLOG.md의 D-ID에 연결해줘.
 ```
 
@@ -54,7 +57,7 @@ $web-design-guidelines
 구현한 화면 파일을 최신 지침으로 검토해줘.
 기준 문서의 R/S-ID와 연결하고 공통 AGENTS의 웹 검토 항목에 맞춰
 시나리오·기대 결과·실제 결과·파일과 행 등 증거·미확인을
-현재 기준 문서에 남기고, 긴 상세만 artifacts/고객온보딩/ui-review.md로 분리해줘.
+현재 기준 문서에 남기고, 긴 상세만 docs/artifacts/ui-review.md로 분리해줘.
 검증 판단은 기준 문서의 검증 절 또는 기존 05-verification.md에,
 실제 결정·변경 이유는 docs/WORKLOG.md의 D-ID에 연결해줘.
 직접 조작하지 않은 항목은 브라우저 테스트 통과로 표시하지 마.
@@ -64,7 +67,7 @@ $web-design-guidelines
 기준 문서의 R/S-ID와 연결된 화면·기능을 사용 가능한 브라우저 도구로 확인해줘.
 과제 환경의 Browser 접속 규칙을 따르고 버튼·입력·이동을 실제로 조작해줘.
 공통 AGENTS의 웹 검토 항목에 맞춰 시나리오·기대 결과·실제 결과·증거·미확인을
-현재 기준 문서에 남기고, 긴 상세만 artifacts/고객온보딩/browser-test-results.md로 분리해줘.
+현재 기준 문서에 남기고, 긴 상세만 docs/artifacts/browser-test-results.md로 분리해줘.
 검증 판단은 기준 문서의 검증 절 또는 기존 05-verification.md에,
 실제 결정·변경 이유는 docs/WORKLOG.md의 D-ID에 연결해줘.
 실행하지 못한 검사는 미실행과 이유를 남겨줘.
