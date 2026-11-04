@@ -40,7 +40,7 @@ bash /복제한/경로/product-skill-trees/setup.sh
 
 [통합 스킬맵](docs/skill-map.md)에서 일곱 스킬의 사용 시점·흐름·입출력·종료 기준·호출 예시를 확인하세요. 앞 단계 파일 없이 직접 자료로 시작할 수 있고, 수행하지 않은 단계는 만들지 않습니다.
 
-[design-ux](skills/design-ux/SKILL.md)는 사용자 과업을 화면·행동·상태·복구로, [design-backend](skills/design-backend/SKILL.md)는 요구사항을 데이터·처리·저장·권한으로 연결합니다. 결과는 PLAN의 관련 설계 절에 반영하고, 설계는 첫 흐름 구현에 필요한 만큼만 작성합니다. 요청된 병렬 작업은 [공유 계약과 통합 규칙](docs/skill-map.md#ux와-백엔드-설계의-병렬-진행)을 따릅니다.
+[design-ux](skills/design-ux/SKILL.md)는 사용자 과업을 화면·행동·상태·복구로, [design-backend](skills/design-backend/SKILL.md)는 요구사항을 데이터·처리·저장·권한으로 연결합니다. 결과는 PLAN의 관련 설계 절에 반영하고, 설계는 첫 흐름 구현에 필요한 만큼만 작성합니다. 작은 작업은 메인이 직접 처리하며, 병렬 사용이 허용돼도 작업량·독립성과 조율 부담을 보고 필요한 경우만 서브에 나눕니다. [병렬 사용 기준과 통합 규칙](docs/skill-map.md#ux와-백엔드-설계의-병렬-진행)을 따릅니다.
 
 마감이 있는 과제에서는 [시간 지침](templates/AGENTS.template.md#시간-제한이-있는-과제)에 따라 실제 마감에서 검증·설명·제출 시간을 먼저 확보하고 정리 종료·첫 실행 시점을 정합니다. 특정 시험의 시간·허용 도구를 다른 과제의 규칙으로 가정하지 않습니다.
 
