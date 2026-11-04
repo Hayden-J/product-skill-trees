@@ -16,25 +16,26 @@ React/Next.js와 PostgreSQL 스킬은 해당 기술을 선택한 프로젝트에
 ## 기존 스킬과 연결하기
 
 ```text
-docs/PLAN.md의 개발 범위·우선순위 + 03의 R-ID + 04의 선택한 S-ID
+현재 기준 문서의 개발 범위·우선순위 + 요구 R-ID + 실제 선택 S-ID
+  → 필요한 경우 design-backend: 첫 흐름의 데이터·처리·저장·권한·Mermaid 설계
   → Context7: 선택한 기술·버전의 초기 설정과 API 근거 확인
   → 프로젝트 초기화·작은 기능 단위 구현
       ├─ React/Next.js: vercel-react-best-practices
       ├─ PostgreSQL: supabase-postgres-best-practices
       └─ 코드가 쌓여 참조 추적이 필요할 때: Serena
   → 요구·예외 조건에 맞는 테스트 실행
-      └─ 웹 화면: 사용 가능한 브라우저 도구/Playwright → browser-test-results.md
+      └─ 웹 화면: 사용 가능한 브라우저 도구/Playwright → 현재 검증 절 또는 긴 browser-test-results.md
   → 오류 발생 시 systematic-debugging: 재현·원인 조사·수정·재검사
-  → verify-work-results: 요구사항·원자료와 결과를 대조해 05-verification.md 작성
+  → verify-work-results: 요구사항·원자료와 결과를 대조해 현재 기준 문서의 검증 절 또는 기존 05 갱신
 ```
 
-앞 단계 파일이 없으면 확인된 요구·선택과 직접 자료를 전달합니다. 개발 도구를 쓰기 위해 01~04 문서를 모두 새로 만들 필요는 없습니다. Context7에서 찾은 문서의 버전은 실제 의존성과 대조하고, 확인하지 못한 API·버전은 미확인으로 남깁니다. Serena의 프로젝트 메모리는 PLAN·WORKLOG의 결정 기록과 연결해 사용합니다.
+기준 문서는 기본 PLAN 또는 같은 역할의 과제 지정 문서입니다. 앞 단계 파일이 없으면 확인된 요구·선택과 직접 자료를 전달합니다. 개발 도구를 쓰기 위해 01~04 문서를 모두 새로 만들 필요는 없습니다. Context7에서 찾은 문서의 버전은 실제 의존성과 대조하고, 확인하지 못한 API·버전은 미확인으로 남깁니다. Serena의 프로젝트 메모리는 PLAN·WORKLOG의 결정 기록과 연결해 사용합니다.
 
-작업 대상은 PLAN의 R/S-ID(해당 시 U-ID·부모 S-ID)에 연결합니다. 구현·문서 근거는 `artifacts/<작업명>/development-notes.md`, 오류 조사와 재검사는 `debugging-notes.md`에 남길 수 있습니다. 과제 지정 경로와 기존 문서를 우선하며, 수행한 작업의 기록만 작성합니다.
+작업 대상은 기준 문서의 R/S-ID(해당 시 U-ID·부모 S-ID)에 연결합니다. 구현·오류 조사·재검사 근거는 현재 기준 문서에 남기고, 길 때만 `artifacts/<작업명>/development-notes.md` 또는 `debugging-notes.md`로 분리합니다. 과제 지정 경로와 기존 문서를 우선하며, 수행한 작업의 기록만 작성합니다.
 
-브라우저 검증은 [공통 AGENTS의 정형 Markdown 양식](../templates/AGENTS.template.md#웹-제품의-화면-검토브라우저-테스트-기록)으로 `browser-test-results.md`에 저장합니다. 시나리오·기대 결과·실제 결과·증거·미확인을 남기고, 화면 표시나 코드 검토만으로 실제 조작을 확인했다고 하지 않습니다. 반복 실행할 기능 검사는 테스트 코드와 실행 결과도 함께 남깁니다.
+브라우저 검증은 [공통 AGENTS의 Markdown 양식](../templates/AGENTS.template.md#웹-제품의-화면-검토브라우저-테스트-기록)으로 기준 문서의 검증 절에 기록하며, 길거나 별도 제출이 필요할 때만 `browser-test-results.md`로 분리합니다. 시나리오·기대 결과·실제 결과·증거·미확인을 남기고, 화면 표시나 코드 검토만으로 실제 조작을 확인했다고 하지 않습니다. 반복 실행할 기능 검사는 테스트 코드와 실행 결과도 함께 남깁니다.
 
-`05-verification.md`에는 사용한 기록·리비전·확인 ID와 R/S-ID를 연결해 판단과 한계를 요약합니다. 구현 결정·변경 이유는 `docs/WORKLOG.md`의 D-ID에 연결하고, 범위·기준이 달라지면 PLAN도 갱신합니다. 도구 연결, 테스트 통과, 업무 효과 입증은 각각 구분합니다. [기록 위치와 연결 흐름](../docs/development-handoff.md#웹-제품의-검토-결과-연결)
+검증 원본(기준 문서의 검증 절 또는 기존 `05-verification.md`)에는 사용한 기록·리비전·확인 ID와 R/S-ID를 연결해 판단과 한계를 요약합니다. 구현 결정·변경 이유는 `docs/WORKLOG.md`의 D-ID에 연결하고, 범위·기준이 달라지면 PLAN도 갱신합니다. 도구 연결, 테스트 통과, 업무 효과 입증은 각각 구분합니다. [기록 위치와 연결 흐름](../docs/development-handoff.md#웹-제품의-검토-결과-연결)
 
 ## 필요할 때 설치하기
 
@@ -106,30 +107,30 @@ TDD 원문은 실패하는 테스트를 먼저 확인하고, 테스트보다 먼
 설치 안내 확인일은 2026-10-31입니다. 이 저장소에서 외부 도구 설치·인증·기동을 시험한 결과는 아니므로, 사용할 환경에서 설치 상태와 실제 동작을 확인합니다. 설치 확인 후에는 다음과 같이 요청할 수 있습니다. 경로는 실제 작업 폴더에 맞게 바꿉니다.
 
 ```text
-docs/PLAN.md와 연결된 요구·선택 자료를 읽고 첫 구현 단위를 진행해줘.
+현재 기준 문서와 연결된 요구·선택 자료를 읽고 첫 구현 단위를 진행해줘.
 Context7으로 선택한 라이브러리의 실제 사용 버전과 API 근거를 확인하고,
 설치한 기술 스킬 중 이번 작업에 해당하는 SKILL.md를 읽어 적용해줘.
-PLAN의 R/S-ID·해당 시 U-ID, 변경 파일, 문서 출처·버전,
-실행 명령·결과·미확인을 artifacts/고객온보딩/development-notes.md에 남겨줘.
-검증 판단은 05-verification.md에, 실제 결정·변경 이유는 WORKLOG의 D-ID에 연결해줘.
+기준 문서의 R/S-ID·해당 시 U-ID, 변경 파일, 문서 출처·버전,
+실행 명령·결과·미확인을 현재 기준 문서에 남기고, 긴 상세만 artifacts/고객온보딩/development-notes.md로 분리해줘.
+검증 판단은 기준 문서의 검증 절 또는 기존 05-verification.md에, 실제 결정·변경 이유는 WORKLOG의 D-ID에 연결해줘.
 ```
 
 ```text
 $playwright-cli
-PLAN의 R/S-ID와 연결된 웹 기능을 실제로 조작해줘.
+기준 문서의 R/S-ID와 연결된 웹 기능을 실제로 조작해줘.
 과제 환경의 Browser 접속 규칙을 따르고 실제 서버 주소·포트를 확인해줘.
-정상 입력·오류 입력·화면 이동의 기대 결과를 PLAN에서 가져와 대조하고,
-공통 AGENTS의 웹 검토 양식으로 시나리오·실제 결과·증거·미확인을
-artifacts/고객온보딩/browser-test-results.md에 남겨줘.
-05-verification.md에 판단을 연결하고, 실행하지 못한 검사는 미실행과 이유를 적어줘.
+정상 입력·오류 입력·화면 이동의 기대 결과를 기준 문서에서 가져와 대조하고,
+공통 AGENTS의 웹 검토 항목에 맞춰 시나리오·실제 결과·증거·미확인을
+현재 기준 문서에 남기고, 긴 상세만 artifacts/고객온보딩/browser-test-results.md로 분리해줘.
+정해진 검증 원본에 판단을 연결하고, 실행하지 못한 검사는 미실행과 이유를 적어줘.
 ```
 
 ```text
 Serena로 현재 작업 프로젝트의 실제 경로를 활성화하고 초기 안내를 읽어줘.
 PLAN에서 이번에 변경할 R/S-ID의 구현 함수와 참조 관계를 찾아 영향 범위를 확인해줘.
 요청·확정 범위의 변경 후 관련 테스트를 실행하고,
-파일·심볼·변경 이유·실행 결과를 artifacts/고객온보딩/development-notes.md에 남겨줘.
-검증 판단은 05-verification.md에, 결정·변경 이유는 WORKLOG의 D-ID에 연결해줘.
+파일·심볼·변경 이유·실행 결과를 현재 기준 문서에 남기고, 긴 상세만 artifacts/고객온보딩/development-notes.md로 분리해줘.
+검증 판단은 기준 문서의 검증 절 또는 기존 05-verification.md에, 결정·변경 이유는 WORKLOG의 D-ID에 연결해줘.
 ```
 
 ```text
@@ -137,8 +138,8 @@ $systematic-debugging
 실패한 R-ID의 테스트·오류 로그와 재현 절차를 읽고 원인을 조사해줘.
 수정 전에 정상 사례와 비교해 가설을 검증하고, 참조하는 TDD·완료 전 검증 스킬도 읽어줘.
 재현 조건·원인 근거·수정·재검사 결과·미확인을
-artifacts/고객온보딩/debugging-notes.md에 남겨줘.
-05-verification.md에 검증 판단을 연결하고, 실제 결정·변경 이유는 WORKLOG에 기록해줘.
+현재 기준 문서에 남기고, 긴 상세만 artifacts/고객온보딩/debugging-notes.md로 분리해줘.
+정해진 검증 원본에 판단을 연결하고, 실제 결정·변경 이유는 WORKLOG에 기록해줘.
 ```
 
-[디자인 스킬과 연계](design-skills.md) · [최종 계획과 개발 착수](../docs/development-handoff.md) · [README로 돌아가기](../README.md)
+[디자인 스킬과 연계](design-skills.md) · [현재 기준 문서와 개발 착수](../docs/development-handoff.md) · [README로 돌아가기](../README.md)

@@ -1,83 +1,55 @@
 # Product Skill Trees
 
-과제를 수행하며 에이전트에게 단계별 도움을 받고, **필요한 스킬·산출물·결정 기록을 이어서 관리**하기 위한 모음입니다. 담당자 인터뷰부터 문제 정의·요구사항·해결안 선택·구현 검증까지 필요한 단계부터 사용합니다.
+업무 문제 탐색부터 요구 정리·해결안 선택·백엔드 설계·결과 검증까지, **지금 필요한 스킬로 작업하고 현재 판단은 한 문서에서 읽는** 모음입니다. 각 스킬은 독립적으로 사용할 수 있습니다.
 
 ## 설치와 업데이트
 
-저장소를 복제한 뒤 **기존 과제 폴더**를 대상으로 실행합니다. Bash를 사용하며 패키지 설치나 네트워크 요청은 없습니다.
+저장소를 복제한 뒤 기존 과제 폴더를 대상으로 실행합니다. Bash를 사용하며 패키지 설치나 네트워크 요청은 없습니다.
 
 ```bash
-# 저장소 폴더에서 대상 지정
 bash setup.sh "/실제/과제 폴더"
-
-# 또는 실제 작업 폴더에서 실행
+# 또는 실제 과제 폴더에서
 bash /복제한/경로/product-skill-trees/setup.sh
 ```
 
-셋업은 **문서 7개와 핵심 스킬 5개**를 복사합니다.
+셋업은 **문서 7개와 핵심 스킬 6개**를 복사합니다.
 
-- 문서: 과제용 `AGENTS.md`, `docs/PLAN.md`, `docs/WORKLOG.md`, `templates/`의 재사용 양식 3개, `PROMPTS.md`
-- 스킬: `.agents/skills/`에 다섯 스킬의 본문·출력 양식·참고 자료·라이선스. [Codex 프로젝트 스킬 경로](https://learn.chatgpt.com/docs/build-skills)
+- 문서: 과제용 `AGENTS.md`, `docs/PLAN.md`, `docs/WORKLOG.md`, 재사용 양식 3개, `PROMPTS.md`
+- 스킬: `.agents/skills/`에 인터뷰·문제 정의·요구 정리·대안 평가·백엔드 설계·결과 검증의 본문·양식·참고 자료·라이선스
 
-새 PLAN은 초안, Worklog는 빈 양식입니다. 외부 디자인·개발 스킬과 도구 설치, 서버·Codex 실행, 계획 작성은 수행하지 않습니다.
+새 PLAN은 미작성 양식, Worklog는 빈 기록표입니다. 외부 도구 설치, 서버·Codex 실행, 계획 작성은 하지 않습니다. 공통 규칙 원본은 [AGENTS.template.md](templates/AGENTS.template.md)이며 저장소의 [AGENTS.md](AGENTS.md)는 정비 시 추가 규칙만 둡니다.
 
-공통 작업 규칙의 원본은 [AGENTS.template.md](templates/AGENTS.template.md)입니다. 루트 [AGENTS.md](AGENTS.md)는 이를 읽도록 지시하고 저장소 정비 규칙만 추가합니다.
+**기존 항목은 덮어쓰지 않습니다.** 같은 이름의 스킬은 폴더 전체를 건너뜁니다. 재실행하면 없는 새 스킬은 추가되지만 기존 규칙·스킬은 자동 갱신되지 않습니다. 기존 다섯 스킬을 쓰던 폴더는 재실행으로 `design-backend`를 추가하고, 보존된 AGENTS·PLAN 양식·기존 스킬은 최신 원본과 비교해 필요한 변경을 반영하세요. 작업 중 작성한 결과 문서는 새 양식으로 덮어쓰지 않습니다.
 
-**기존 항목은 덮어쓰지 않습니다.** 같은 이름의 스킬은 폴더 전체를 건너뜁니다. `docs`·`templates`·`.agents`·`.agents/skills` 자체가 파일/링크이면 설치 전에 중단하며, 이 저장소 자체에는 설치하지 않습니다. 재실행은 자동 업데이트가 아닙니다. 보존된 규칙·스킬은 최신 원본과 비교해 필요한 변경만 반영하세요. 복사 오류가 나면 부분 설치된 새 폴더를 확인한 뒤 재시도하세요.
+`docs`·`templates`·`.agents`·`.agents/skills` 자체가 파일/링크이면 설치 전에 중단하고, 이 저장소 자체에는 설치하지 않습니다. 복사 오류가 나면 부분 설치된 새 폴더를 확인한 뒤 재시도하세요.
 
-과제 폴더에서 새 Codex 세션을 시작하고 [협업 시작·재개 문구](PROMPTS.md)를 사용하세요. 기존 `AGENTS.md`가 보존된 경우에도 시작 문구로 공통 양식을 읽게 하되 과제 규칙을 우선합니다. 스킬이 목록에 안 보이면 설치된 `SKILL.md` 경로를 직접 지정하세요. 웹 과제는 [Browser 확인 규칙](templates/AGENTS.template.md#browser에서-서비스-확인)을 따릅니다.
+과제 폴더의 새 세션에서 [시작·재개 문구](PROMPTS.md)를 사용하세요. 스킬이 목록에 없으면 설치된 `SKILL.md` 경로를 직접 지정합니다. 기존 AGENTS가 보존됐다면 공통 양식도 읽게 하되 과제 규칙을 우선합니다.
 
-```text
-AGENTS.md, 과제 README, templates/AGENTS.template.md를 읽고
-과제 규칙에 맞춰 .agents/skills/에서 필요한 스킬을 골라 도와줘.
-단계 결과를 MD로 저장하고 Worklog에 결정·진행 상태·다음 행동을 기록해줘.
-```
+## PLAN과 산출물 관리
 
-## 어떤 스킬을 쓸까?
+기본은 **PLAN 또는 과제 지정 문서 한 곳에 현재 목표·요구·선택·설계·검증 요약을 쓰는 방식**입니다. 스킬을 호출할 때마다 별도 문서를 만들지 않습니다. 상단의 현재 요약에서 방향·완료 증거·차단·다음 행동을 확인하고, 필요한 상세 근거만 링크로 엽니다.
 
-| 상황 | 스킬 | 결과 MD |
-| --- | --- | --- |
-| 불만은 있지만 구체적인 사건·부담을 모를 때 | [discovery-interview](skills/discovery-interview/SKILL.md) | `01-discovery.md` |
-| 문제·원인·바꿀 행동이나 구조를 좁힐 때 | [define-problem](skills/define-problem/SKILL.md) | `02-problem-definition.md` |
-| 성공 조건·제약·예외·검증 기준을 정할 때 | [clarify-requirements](skills/clarify-requirements/SKILL.md) | `03-requirements.md` |
-| 대안의 효과·부담·위험을 비교하고 선택할 때 | [evaluate-solutions](skills/evaluate-solutions/SKILL.md) | `04-solution-evaluation.md` |
-| 주장·계산·산출물을 원자료와 대조할 때 | [verify-work-results](skills/verify-work-results/SKILL.md) | `05-verification.md` |
+- 긴 분석·실행 증거·별도 제출 의무가 있을 때만 상세 파일을 분리합니다.
+- 단독 스킬 사용은 해당 결과 문서만 작성합니다. PLAN을 추가로 요구하지 않습니다.
+- 제출 문서가 같은 역할을 맡으면 그 문서가 기준입니다. 형식이 엄격한 제출본은 기준 문서에서 편집한 결과물로 관리하며 두 문서를 독립적으로 계속 수정하지 않습니다.
+- Worklog는 실제 결정·변경 이유·수행 이력입니다. 에이전트가 별도 요청 없이 기록하고 현재 요약도 갱신합니다.
 
-기본 출력 위치는 `artifacts/<작업명>/`입니다. **Problem Space → Pain → Mechanism → Opportunity → Solution**의 판단을 문서 링크·버전·항목 ID로 연결합니다. 직접 자료로 시작할 수 있고, 수행하지 않은 단계는 만들지 않습니다. 검증은 중간에도 사용합니다.
+[문서 역할·개발·제출 연결](docs/development-handoff.md) · [PLAN 양식](templates/PLAN.template.md) · [근거·결정 전달 규약](docs/handoff-contract.md)
 
-## 분석에서 개발까지
+## 스킬 사용
 
-```text
-과제 원문 + 단계별 결과 + Worklog의 실제 결정
-  → PLAN: 목표·타겟·문제·요구·선택한 솔루션·제외 범위·우선순위·산출물과 검증 방법
-  → 요청·확정 범위의 구현 → 실제 결과 검증 → 필요한 계획 수정
-```
+[통합 스킬맵](docs/skill-map.md)에서 여섯 스킬의 사용 시점·흐름·입출력·종료 기준·호출 예시를 확인하세요. 앞 단계 파일 없이 직접 자료로 시작할 수 있고, 수행하지 않은 단계는 만들지 않습니다.
 
-단계 문서는 분석·근거, `docs/PLAN.md`는 개발에 착수할 종합 계획을 담습니다. `docs/WORKLOG.md`에는 에이전트가 **별도 요청 없이 실제 협업·결정·진행 상태·다음 행동과 산출물 링크를 기록**합니다. 새 대화에서는 이 문서들을 읽어 이어갑니다. 기록은 AGENTS 지침에 따른 파일 갱신이며 백그라운드 수집 기능은 아닙니다. [개발 착수 안내](docs/development-handoff.md)
+새 [design-backend](skills/design-backend/SKILL.md)는 요구사항을 데이터 관계·모듈 책임·처리·저장·권한·실패 조건으로 연결합니다. **Mermaid 처리 흐름도와 짧은 해설**을 기본으로, 필요한 관계도·상태 전이도·시퀀스 그림을 추가합니다. 설계는 첫 흐름 구현에 필요한 만큼만 작성합니다.
 
-## 스킬맵과 양식
+마감이 있는 과제에서는 [시간 지침](templates/AGENTS.template.md#시간-제한이-있는-과제)에 따라 실제 마감에서 검증·설명·제출 시간을 먼저 확보하고 정리 종료·첫 실행 시점을 정합니다. 특정 시험의 시간·허용 도구를 다른 과제의 규칙으로 가정하지 않습니다.
 
-- [통합 스킬맵](docs/skill-map.md): 전체 흐름·사용 시점·스킬 내부 순서·입출력·검토 기준·호출 문구
-- [입력·출력 규약](docs/handoff-contract.md)
-- [과제용 작업 규칙](templates/AGENTS.template.md) · [PLAN 양식](templates/PLAN.template.md) · [Worklog 양식](templates/WORKLOG.template.md)
+## 후속 도구와 확인
 
-## 후속 연계 스킬: 디자인
+- [디자인 스킬 연계](skills/design-skills.md): 화면 설계·구현·사용성 검토
+- [개발 스킬·도구 연계](skills/Development-skill-set.md): 선택한 기술의 문서·구현·브라우저 확인·오류 조사
+- [웹 확인 규칙](templates/AGENTS.template.md#browser에서-서비스-확인): 실제 환경에서 조작하고 코드·모듈·전체 흐름 검증을 구분
 
-| 외부 스킬 | 사용할 때 |
-| --- | --- |
-| [frontend-design · Anthropic](https://github.com/anthropics/skills/tree/main/skills/frontend-design) | 새 화면 설계·구현 또는 디자인 방향 변경 |
-| [web-design-guidelines · Vercel](https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines) | 구현한 화면의 사용성·접근성 점검 |
-
-필요할 때 원본에서 선택 설치합니다. [설치 명령·입출력 연결·요청 예시](skills/design-skills.md)
-
-웹 작업은 PLAN의 R/S-ID에 연결하고, 화면 검토·브라우저 테스트는 시나리오·기대 결과·실제 결과·증거·미확인을 담은 정형 MD로 남깁니다. 검증 판단은 05에, 결정·변경 이유는 Worklog에 연결합니다. [기록 양식과 흐름](docs/development-handoff.md#웹-제품의-검토-결과-연결)
-
-## 후속 연계 스킬·도구: 개발
-
-새 프로젝트의 초기 설정·구현에는 Context7과 선택한 기술의 스킬을, 웹 기능 검증에는 사용 가능한 브라우저 도구나 Playwright를 활용합니다. Serena는 코드가 쌓여 참조 관계를 추적할 때, systematic-debugging은 오류·테스트 실패를 조사할 때 연결합니다.
-
-필요한 항목만 선택 설치하며, 구현·검증 결과를 PLAN과 05·Worklog에 연결합니다. [개발 스킬·도구의 사용 시점·설치·요청 예시](skills/Development-skill-set.md)
-
-과제의 목표·필수 조건·제출 형식·허용 도구를 우선합니다. 가상 과제의 응답을 실제 기업의 현장 증거로 표현하지 않습니다. 설치 검사는 `bash -n setup.sh`와 `python3 scripts/test_setup.py`로 실행하며, 테스트는 임시 폴더를 사용합니다.
+외부 항목은 필요한 경우만 선택 설치합니다. 과제의 목표·필수 조건·제출 형식·허용 도구가 우선입니다. 설치 검사는 `bash -n setup.sh`와 `python3 scripts/test_setup.py`로 실행하며 임시 폴더를 사용합니다.
 
 [MIT License](LICENSE)

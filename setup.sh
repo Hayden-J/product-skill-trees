@@ -9,7 +9,7 @@ usage() {
   echo "폴더를 생략하면 현재 작업 폴더에 설치합니다."
 }
 fail() { echo "[오류] $*" >&2; exit 1; }
-SKILLS=(discovery-interview define-problem clarify-requirements evaluate-solutions verify-work-results)
+SKILLS=(discovery-interview define-problem clarify-requirements evaluate-solutions design-backend verify-work-results)
 
 if [ "${1:-}" = "--help" ] || [ "${1:-}" = "-h" ]; then
   usage
@@ -97,6 +97,7 @@ echo "harness ready — 문서 복사 $copied, 건너뜀 $skipped; 스킬 설치
 echo "→ 작업 폴더: $DEST"
 echo "→ 요청 문구: $DEST/PROMPTS.md 열기"
 echo "→ 새로 만든 PLAN은 초안, 협업 기록은 빈 양식입니다. 실제 근거·결정으로 채워 주세요."
+echo "→ 현재 판단은 PLAN 또는 같은 역할의 지정 문서 한 곳에 관리합니다. 별도 단계 문서는 필요한 경우만 만듭니다."
 echo "→ Worklog는 AGENTS.md를 읽은 에이전트가 협업 중 기록합니다. 셋업은 기록 프로그램을 실행하지 않습니다."
 echo "→ 기존 과제 규칙·양식을 우선합니다. 건너뛴 파일은 필요할 때 원본 양식을 참고하세요: $SRC/templates"
 echo "→ 핵심 스킬 위치: $DEST/.agents/skills/<스킬명>/SKILL.md (양식·참고 자료 포함)"
