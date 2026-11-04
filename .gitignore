@@ -1,4 +1,6 @@
 # Per-task working documents; publish only deliberately selected examples.
+/docs/artifacts/
+# Preserve the ignore rule for records created before the output-path change.
 /artifacts/
 /docs/repository-audit.md
 .DS_Store
