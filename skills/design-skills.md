@@ -9,8 +9,11 @@
 
 ## 기존 스킬과 연결하기
 
+사용자 과업·화면·상태·복구 설계는 기본 설치되는 [design-ux](design-ux/SKILL.md)를 사용한다. 아래 외부 스킬은 그 결과를 화면 구현과 품질 점검에 연결한다.
+
 ```text
 현재 기준 문서의 개발 범위·우선순위 + 요구 R-ID + 실제 선택 S-ID
+  → design-ux: 첫 사용자 과업의 화면·행동·상태·복구와 공유 입출력
   → frontend-design: 요구와 선택한 방법에 맞춰 화면 설계·구현
   → web-design-guidelines: 화면 코드의 UI 품질 점검 → 현재 검증 절 또는 긴 ui-review.md
   → 사용 가능한 브라우저 도구로 실제 조작 확인 → 현재 검증 절 또는 긴 browser-test-results.md

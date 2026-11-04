@@ -9,7 +9,7 @@ usage() {
   echo "폴더를 생략하면 현재 작업 폴더에 설치합니다."
 }
 fail() { echo "[오류] $*" >&2; exit 1; }
-SKILLS=(discovery-interview define-problem clarify-requirements evaluate-solutions design-backend verify-work-results)
+SKILLS=(discovery-interview define-problem clarify-requirements evaluate-solutions design-ux design-backend verify-work-results)
 
 if [ "${1:-}" = "--help" ] || [ "${1:-}" = "-h" ]; then
   usage

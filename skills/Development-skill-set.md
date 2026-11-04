@@ -17,6 +17,7 @@ React/Next.js와 PostgreSQL 스킬은 해당 기술을 선택한 프로젝트에
 
 ```text
 현재 기준 문서의 개발 범위·우선순위 + 요구 R-ID + 실제 선택 S-ID
+  → 화면이 있으면 design-ux: 첫 과업의 화면·행동·상태·복구
   → 필요한 경우 design-backend: 첫 흐름의 데이터·처리·저장·권한·Mermaid 설계
   → Context7: 선택한 기술·버전의 초기 설정과 API 근거 확인
   → 프로젝트 초기화·작은 기능 단위 구현

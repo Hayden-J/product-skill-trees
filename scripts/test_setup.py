@@ -20,7 +20,7 @@ FILES = {
 }
 SKILLS = (
     "discovery-interview", "define-problem", "clarify-requirements",
-    "evaluate-solutions", "design-backend", "verify-work-results",
+    "evaluate-solutions", "design-ux", "design-backend", "verify-work-results",
 )
 
 
@@ -44,7 +44,7 @@ class SetupTests(unittest.TestCase):
         self.assertIn("복사 7, 건너뜀 0", result.stdout)
         for dest, source in FILES.items():
             self.assertEqual((self.task / dest).read_bytes(), (ROOT / source).read_bytes())
-        self.assertIn("스킬 설치 6, 건너뜀 0", result.stdout)
+        self.assertIn("스킬 설치 7, 건너뜀 0", result.stdout)
         installed = self.task / ".agents/skills"
         self.assertEqual({p.name for p in installed.iterdir()}, set(SKILLS))
         for name in SKILLS:
@@ -85,7 +85,7 @@ class SetupTests(unittest.TestCase):
         result = self.run_setup()
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("복사 0, 건너뜀 7", result.stdout)
-        self.assertIn("스킬 설치 0, 건너뜀 6", result.stdout)
+        self.assertIn("스킬 설치 0, 건너뜀 7", result.stdout)
         for index, dest in enumerate(paths):
             path = self.task / dest
             self.assertEqual(path.read_text(), f"과제에서 수정한 내용 {index}\n")
@@ -165,7 +165,7 @@ class SetupTests(unittest.TestCase):
         (skill / "SKILL.md").write_text("기존 스킬 본문\n")
         result = self.run_setup()
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("스킬 설치 5, 건너뜀 1", result.stdout)
+        self.assertIn("스킬 설치 6, 건너뜀 1", result.stdout)
         self.assertEqual((skill / "SKILL.md").read_text(), "기존 스킬 본문\n")
         self.assertEqual({p.name for p in skill.iterdir()}, {"SKILL.md"})
 
@@ -181,7 +181,7 @@ class SetupTests(unittest.TestCase):
         (installed / SKILLS[2]).write_text("같은 이름의 파일\n")
         result = self.run_setup()
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("스킬 설치 3, 건너뜀 3", result.stdout)
+        self.assertIn("스킬 설치 4, 건너뜀 3", result.stdout)
         self.assertTrue((installed / SKILLS[0]).is_symlink())
         self.assertTrue((installed / SKILLS[1]).is_symlink())
         self.assertEqual((installed / SKILLS[2]).read_text(), "같은 이름의 파일\n")
@@ -198,7 +198,13 @@ class SetupTests(unittest.TestCase):
             shutil.copytree(ROOT / dirname, source / dirname, dirs_exist_ok=True)
         return source
 
-    def test_existing_five_skill_install_adds_only_backend(self):
+    def test_existing_five_skill_install_adds_only_design_skills(self):
+        self.assert_upgrade_adds_only({"design-ux", "design-backend"})
+
+    def test_existing_six_skill_install_adds_only_ux(self):
+        self.assert_upgrade_adds_only({"design-ux"})
+
+    def assert_upgrade_adds_only(self, missing_skills):
         # Model an earlier install with task-specific edits; re-running must not
         # replace its rules, plan, history, or existing skill bundles.
         for dest in FILES:
@@ -206,7 +212,7 @@ class SetupTests(unittest.TestCase):
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(f"기존 과제 내용: {dest}\n")
         for name in SKILLS:
-            if name == "design-backend":
+            if name in missing_skills:
                 continue
             bundle = self.task / ".agents/skills" / name
             bundle.mkdir(parents=True)
@@ -217,25 +223,31 @@ class SetupTests(unittest.TestCase):
         result = self.run_setup()
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("복사 0, 건너뜀 7", result.stdout)
-        self.assertIn("스킬 설치 1, 건너뜀 5", result.stdout)
+        self.assertIn(f"스킬 설치 {len(missing_skills)}, 건너뜀 {len(SKILLS) - len(missing_skills)}",
+                      result.stdout)
         for relative, content in before.items():
             self.assertEqual((self.task / relative).read_bytes(), content)
-        source = ROOT / "skills/design-backend"
-        installed = self.task / ".agents/skills/design-backend"
-        for path in source.rglob("*"):
-            if path.is_file():
-                self.assertEqual((installed / path.relative_to(source)).read_bytes(),
-                                 path.read_bytes())
+        expected_additions = set()
+        for name in missing_skills:
+            source = ROOT / "skills" / name
+            installed = self.task / ".agents/skills" / name
+            for path in source.rglob("*"):
+                if path.is_file():
+                    target = installed / path.relative_to(source)
+                    self.assertEqual(target.read_bytes(), path.read_bytes())
+                    expected_additions.add(target.relative_to(self.task))
+            self.assertEqual((installed / "LICENSE").read_bytes(), (ROOT / "LICENSE").read_bytes())
+            expected_additions.add((installed / "LICENSE").relative_to(self.task))
         additions = {p.relative_to(self.task) for p in self.task.rglob("*")
                      if p.is_file()} - set(before)
-        self.assertTrue(additions)
-        self.assertTrue(all(p.is_relative_to(".agents/skills/design-backend")
-                            for p in additions))
+        self.assertEqual(additions, expected_additions)
 
     def test_missing_required_source_stops_before_installing(self):
         for relative in ["templates/PLAN.template.md", "LICENSE",
                          "skills/define-problem/SKILL.md",
-                         "skills/verify-work-results/assets/output-template.md"]:
+                         "skills/verify-work-results/assets/output-template.md",
+                         "skills/design-ux/SKILL.md",
+                         "skills/design-ux/assets/output-template.md"]:
             with self.subTest(relative=relative):
                 source = self.make_source_copy()
                 (source / relative).unlink()
