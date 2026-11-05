@@ -20,7 +20,7 @@ FILES = {
 }
 SKILLS = (
     "discovery-interview", "define-problem", "clarify-requirements",
-    "evaluate-solutions", "design-ux", "design-backend", "verify-work-results",
+    "evaluate-solutions", "design-ux", "design-backend", "test-software", "verify-work-results",
 )
 
 
@@ -44,7 +44,7 @@ class SetupTests(unittest.TestCase):
         self.assertIn("복사 7, 건너뜀 0", result.stdout)
         for dest, source in FILES.items():
             self.assertEqual((self.task / dest).read_bytes(), (ROOT / source).read_bytes())
-        self.assertIn("스킬 설치 7, 건너뜀 0", result.stdout)
+        self.assertIn("스킬 설치 8, 건너뜀 0", result.stdout)
         installed = self.task / ".agents/skills"
         self.assertEqual({p.name for p in installed.iterdir()}, set(SKILLS))
         for name in SKILLS:
@@ -85,7 +85,7 @@ class SetupTests(unittest.TestCase):
         result = self.run_setup()
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("복사 0, 건너뜀 7", result.stdout)
-        self.assertIn("스킬 설치 0, 건너뜀 7", result.stdout)
+        self.assertIn("스킬 설치 0, 건너뜀 8", result.stdout)
         for index, dest in enumerate(paths):
             path = self.task / dest
             self.assertEqual(path.read_text(), f"과제에서 수정한 내용 {index}\n")
@@ -152,7 +152,11 @@ class SetupTests(unittest.TestCase):
         for name in SKILLS:
             bundle = (self.task / ".agents/skills" / name).resolve()
             for doc in bundle.rglob("*.md"):
-                for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", doc.read_text()):
+                # Code examples describe future outputs, not bundled links.
+                prose = re.sub(r"^```[^\n]*\n.*?^```[ \t]*$", "", doc.read_text(),
+                               flags=re.MULTILINE | re.DOTALL)
+                prose = re.sub(r"`[^`\n]+`", "", prose)
+                for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", prose):
                     if "://" in target or target.startswith("#"):
                         continue
                     linked = (doc.parent / target.split("#")[0]).resolve()
@@ -165,7 +169,7 @@ class SetupTests(unittest.TestCase):
         (skill / "SKILL.md").write_text("기존 스킬 본문\n")
         result = self.run_setup()
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("스킬 설치 6, 건너뜀 1", result.stdout)
+        self.assertIn("스킬 설치 7, 건너뜀 1", result.stdout)
         self.assertEqual((skill / "SKILL.md").read_text(), "기존 스킬 본문\n")
         self.assertEqual({p.name for p in skill.iterdir()}, {"SKILL.md"})
 
@@ -181,7 +185,7 @@ class SetupTests(unittest.TestCase):
         (installed / SKILLS[2]).write_text("같은 이름의 파일\n")
         result = self.run_setup()
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("스킬 설치 4, 건너뜀 3", result.stdout)
+        self.assertIn("스킬 설치 5, 건너뜀 3", result.stdout)
         self.assertTrue((installed / SKILLS[0]).is_symlink())
         self.assertTrue((installed / SKILLS[1]).is_symlink())
         self.assertEqual((installed / SKILLS[2]).read_text(), "같은 이름의 파일\n")
@@ -198,11 +202,14 @@ class SetupTests(unittest.TestCase):
             shutil.copytree(ROOT / dirname, source / dirname, dirs_exist_ok=True)
         return source
 
-    def test_existing_five_skill_install_adds_only_design_skills(self):
-        self.assert_upgrade_adds_only({"design-ux", "design-backend"})
+    def test_existing_five_skill_install_adds_design_and_qa(self):
+        self.assert_upgrade_adds_only({"design-ux", "design-backend", "test-software"})
 
-    def test_existing_six_skill_install_adds_only_ux(self):
-        self.assert_upgrade_adds_only({"design-ux"})
+    def test_existing_six_skill_install_adds_ux_and_qa(self):
+        self.assert_upgrade_adds_only({"design-ux", "test-software"})
+
+    def test_existing_seven_skill_install_adds_only_qa(self):
+        self.assert_upgrade_adds_only({"test-software"})
 
     def assert_upgrade_adds_only(self, missing_skills):
         # Model an earlier install with task-specific edits; re-running must not
@@ -247,7 +254,9 @@ class SetupTests(unittest.TestCase):
                          "skills/define-problem/SKILL.md",
                          "skills/verify-work-results/assets/output-template.md",
                          "skills/design-ux/SKILL.md",
-                         "skills/design-ux/assets/output-template.md"]:
+                         "skills/design-ux/assets/output-template.md",
+                         "skills/test-software/SKILL.md",
+                         "skills/test-software/assets/output-template.md"]:
             with self.subTest(relative=relative):
                 source = self.make_source_copy()
                 (source / relative).unlink()
